@@ -20,9 +20,41 @@
             <?php include_once('../util_classes/Ballot.php') ?>
             <table class="table">
                 <thead>
+                <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX Example</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <table class="table">
+        <thead>
 
-                </thead>
-                <tbody>
+        </thead>
+        <tbody>
+    <script>
+      
+                $.ajax({
+                    url: '',
+                    method: 'GET',
+                    dataType: 'json'
+                })
+                .done(function(data) {
+                    $('#result').html(`<p>Title: ${data.title}</p><p>Body: ${data.body}</p>`);
+                    console.log("Request succeeded:", data);
+                })
+                .fail(function(jqXHR, textStatus, errorThrown) {
+                    $('#result').html(`<p>Error: ${textStatus}</p>`);
+                    console.error("Request failed:", textStatus, errorThrown);
+                })
+                .always(function() {
+                    console.log("Request completed");
+                });
+         
+    
+    </script>
             
                 </tbody>
             </table>
