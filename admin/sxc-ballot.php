@@ -36,22 +36,7 @@
         <tbody>
     <script>
       
-                $.ajax({
-                    url: '',
-                    method: 'GET',
-                    dataType: 'json'
-                })
-                .done(function(data) {
-                    $('#result').html(`<p>Title: ${data.title}</p><p>Body: ${data.body}</p>`);
-                    console.log("Request succeeded:", data);
-                })
-                .fail(function(jqXHR, textStatus, errorThrown) {
-                    $('#result').html(`<p>Error: ${textStatus}</p>`);
-                    console.error("Request failed:", textStatus, errorThrown);
-                })
-                .always(function() {
-                    console.log("Request completed");
-                });
+              
          
     
     </script>

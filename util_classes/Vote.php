@@ -75,13 +75,16 @@
         }
     }
     $vote=new Vote($conn);
-    // $start=microtime(true);
-    // for($i=0;$i<150;$i++)
-    // {
-    //     $vote->addVote(73);
-    //     $vote->addVote(74);
-    // }
-    // $end=microtime(true);
-    // echo "The For loop time is ".($end-$start);
+    $start=microtime(true);
+    for($i=0;$i<350;$i++)
+    {
+        $vote->addVote(73);
+        $vote->addVote(74);
+        $vote->addVote(84);
+        $vote->addVote(82);
+        $vote->addVote(81);
+    }
+    $end=microtime(true);
+    echo "The For loop time is ".($end-$start);
 
 ?>

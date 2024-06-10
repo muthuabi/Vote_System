@@ -1,4 +1,5 @@
 <?php
+    header("Acess-Control-Allow-Origin:*");
     include_once('../connection/connection.php');
     class Ballot
     {
@@ -35,7 +36,7 @@
 
     }
     $ballot=new Ballot($conn);
-    if(isset($_GET['BALLOT_ALL']))
+    if(isset($_GET['ballot']) && $_GET['ballot']='BALLOT_ALL')
     {
         echo json_encode($ballot->showBallotAll());
     }
