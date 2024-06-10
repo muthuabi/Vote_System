@@ -4,10 +4,13 @@
 php_value memory_limit 256M
 
 # PHP Maximum Execution Time
-php_value max_execution_time 300
+php_value max_execution_time 1000
 
 # PHP Maximum Input Time
 php_value max_input_time 300
 
 # PHP Maximum size of POST data
 php_value post_max_size 50M
+
+# Allow PHP to process .html files
+AddType text/html .html

@@ -17,6 +17,8 @@ document.addEventListener("DOMContentLoaded",(event)=>{
 		init_toast('You are Offline');
 	})
     window.addEventListener("resize",(e)=>{
+        if(maincanvas)
+        {
         if(window.innerWidth>=768)
         {
             //maincanvas.style.transform='translateX(0)';
@@ -26,6 +28,7 @@ document.addEventListener("DOMContentLoaded",(event)=>{
         { 
             maincanvas.style.visibility='hidden';
         }
+    }
         
     })
 })
