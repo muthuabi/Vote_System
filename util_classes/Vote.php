@@ -75,28 +75,28 @@
         }
     }
     $vote=new Vote($conn);
-    $start=microtime(true);
-    for($i=0;$i<350;$i++)
-    {
-        $vote->addVote(73);
-        $vote->addVote(74);
-        $vote->addVote(84);
-        $vote->addVote(82);
-        $vote->addVote(81);
-        $vote->addVote(73);
-        $vote->addVote(74);
-        $vote->addVote(84);
-        $vote->addVote(82);
-        $vote->addVote(81);
-        $vote->addVote(75);
-        $vote->addVote(76);
-        $vote->addVote(77);
-        $vote->addVote(80);
-        $vote->addVote(79);
-        $vote->addVote(78);
-        $vote->addVote(83);
-    }
-    $end=microtime(true);
-    echo "The For loop time is ".($end-$start);
+    // $start=microtime(true);
+    // for($i=0;$i<350;$i++)
+    // {
+    //     $vote->addVote(73);
+    //     $vote->addVote(74);
+    //     $vote->addVote(84);
+    //     $vote->addVote(82);
+    //     $vote->addVote(81);
+    //     $vote->addVote(73);
+    //     $vote->addVote(74);
+    //     $vote->addVote(84);
+    //     $vote->addVote(82);
+    //     $vote->addVote(81);
+    //     $vote->addVote(75);
+    //     $vote->addVote(76);
+    //     $vote->addVote(77);
+    //     $vote->addVote(80);
+    //     $vote->addVote(79);
+    //     $vote->addVote(78);
+    //     $vote->addVote(83);
+    // }
+    // $end=microtime(true);
+    // echo "The For loop time is ".($end-$start);
 
 ?>
