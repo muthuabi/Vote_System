@@ -1,0 +1,131 @@
+<?php 
+    //error_reporting(E_ALL && ~E_WARNING);
+    session_start();
+    if(isset($_SESSION['admin']) && !empty($_SESSION['admin']))
+    {
+        $admin=$_SESSION['admin'];
+    }
+    else
+    {
+        header('HTTP/1.1 403 Access Forbidden');
+        http_response_code(403);
+        echo "<center>Access Forbidden</center>";
+        exit();
+    }
+    if(isset($_POST['admin_logout']))
+    {
+        session_destroy();
+        header("Location:login.php");
+    }
+
+?>
+<?php 
+include_once("../util_classes/Admin.php");
+if(isset( $_POST["admin_change_pass"]))
+    echo "<style>#change_pass_container{display:flex}</style>";
+else
+    echo "<style>#change_pass_container{display:none}</style>";
+
+if(isset($_POST['change_pass']))
+{
+    if($admin->change_admin_password($_POST['new_pass'],$_SESSION['admin']))
+    {
+        echo "<script>alert('Changed')</script>";
+    }
+    else
+    {
+        echo "<script>alert('Password not changes')</script>";
+    }
+}
+?>
+<div id="change_pass_container" class=" position-fixed justify-content-center align-items-center" style="z-index:10000;height:85vh;width:100%">
+    <form action='' method='post' class="bg-light d-flex flex-column gap-2" style="padding:1.5rem 1rem;width:350px">
+    <h4 class="text-center">Change Password</h4>    
+    <div class="form-group">
+            <label for="old_pass">New Password</label>
+            <input type="password" name="new_pass" id="new_pass" required class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="new_pass">Confirm Password</label>
+            <input type="password" name="confirm_new_pass" id="confirm_pass" required class="form-control">
+        </div>
+        <button class="btn btn-primary" type="submit" id="change_pass" name="change_pass">Change</button>
+        <button class="btn btn-link" type="submit" id="change_pass" formnovalidate name="cancel_change_pass">Cancel</button>
+    </form>
+</div>
+
+
+<script>
+    const old_pass=document.getElementById('new_pass');
+    const new_pass=document.getElementById('confirm_pass');
+    const change=document.getElementById('change_pass');
+    new_pass.addEventListener("keyup",(e)=>{
+        if(e.target.value==old_pass.value)
+        {
+            change.disabled=false;
+        }
+        else
+        {
+            change.disabled=true;
+        }
+    })
+
+</script>
+<div class="toast bg-light" role="alert" id="my_toast_offline">
+      <div class="toast-header">
+        <i class="fa fa-bell me-2"></i>
+        <strong class="me-auto" style="color:rgb(66, 64, 64)">SXC</strong>
+        <small> </small>
+        <button class="btn-close" data-bs-dismiss="toast"></button>
+      </div>
+      <div class="toast-body">
+        <b style="color:rgb(99, 96, 96)" id="message"></b>
+      </div>
+    </div>
+<nav class="navbar navbar-expand position-relative">
+
+    <div class="container-fluid">
+        <div class="brand d-flex align-items-center ">
+            <button class="navbar-toggler btn btn-secondary d-flex d-md-none  d-lg-none " type="button" data-bs-toggle="offcanvas" data-bs-target="#maincanvas" aria-controls="maincanvas">
+                <span class="navbar-toggler-icon">&#9776;</span>
+            </button>
+            <a href="#" class="navbar-brand">SXC Elections</a>
+        </div>
+        <div class="profile-card">
+            <img src="../assets/images/other_images/bg1.jpg" class="icon">
+            <span class="d-none d-md-block d-lg-block"><?php echo $_SESSION['admin_name']; ?></span>
+            <form method="post">
+                <button class="btn btn-dark" type='submit' name='admin_logout'>Sign Out</button>
+                <button class="btn btn-dark" type='submit' name='admin_change_pass'>⛔</button>
+            </form>
+        </div>
+    </div>
+</nav>
+<section class="main-sidebar offcanvas offcanvas-start" tabindex="-1" id="maincanvas" aria-labelledby="maincanvasLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="maincanvasLabel">SXC Elections</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close">
+        </button>
+    </div>
+    <div class="offcanvas-body bg-dark">
+        <div class="sidebar-card">
+            <h3 class="sidebar-sub-head">Profile</h3>
+            <div class="sidebar-inner-card">
+                <img src="../assets/images/other_images/bg1.jpg" class="icon">
+                <div class="sidebar-profile-card">
+                    <span><?php echo $_SESSION['admin_name']?></span>
+                    <span id='on_off' style='display:flex;align-items:center;gap:0.5rem;'><small style='background-color:green;border-radius:50%;width:10px;height:10px;'></small><small>Online</small></span>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-card">
+            <h3 class="sidebar-sub-head">Links</h3>
+            <ul class="nav navbar-nav">
+                <li class="nav-item"><a href="dashboard.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='dashboard.php')  echo 'nav-active'  ?>">Dashboard</a></li>
+                <li class="nav-item"><a href="sxc-candidates.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='sxc-candidates.php')  echo 'nav-active'  ?>">Candidates</a></li>
+                <!-- <li class="nav-item"><a href="" class="nav-link">Contact</a></li> -->
+            </ul>
+
+        </div>
+    </div>
+</section>
