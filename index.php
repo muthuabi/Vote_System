@@ -14,17 +14,16 @@
 </head>
 
 <body>
-        <main id="home">
+     <main id="home">
 
             <div class="home-box">
                 <h1 class="head-name head-role">St Xavier's College</h1>
                 <p class="lead text-center">
-                    Vote is the Basic right of All.
+                    Welcome to the SXC Vote System!
                 </p>
                 <a href="user/" class="btn btn-lg btn-dark px-5">Go to Vote</a>
+                <a href="admin/login.php" class="btn btn-dark opacity-hover" style='position:fixed;bottom:0.5rem'>Admin</a>
             </div>
-
-
     </main>
 </body>
 

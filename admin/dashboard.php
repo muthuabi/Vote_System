@@ -48,7 +48,7 @@
                     <div class='dash-head-post'>
                         <h4 id='post_name'>${values.post} (${(values.post_shift=='Both')?'Shift I & II':values.post_shift})</h4>
                     </div>
-                    <div style='dash-body-post'>
+                        <div class='dash-body-post'>
                         <div class='dash-data-content'>
                             <div class='dash-data'>
                                 <b>Total Candidates </b>
