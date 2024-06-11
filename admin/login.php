@@ -28,14 +28,14 @@
                     <label for="username">Username</label>
                     <div class="input-group">
                         <input type="text" name="username" required id="username" class="form-control">
-                        <span class="input-group-text">🎗</span>
+                        <span class="input-group-text">&#x1F464;</span>
                     </div>
                 </div>
                 <div class="form-group ">
                     <label for="password">Password</label>
                     <div class="input-group">
                         <input type="password" required name="password" id="password" class="form-control">
-                        <span class="input-group-text">🔒</span>
+                        <span class="input-group-text">&#128274;</span>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-dark my-2 w-100" id="admin_login_btn" name="admin_login">Login</button>
@@ -51,7 +51,15 @@
                                   $_SESSION['admin']=$validate_result['username'];
                                   $_SESSION['admin_name']=$validate_result['name'];
                                   $_SESSION['admin_email']=$validate_result['email'];
+                                 echo  $_SESSION['admin_role']=$validate_result['role'];
+                                 if($_SESSION['admin_role']=='father')
+                                 {
+                                        header("Location:../dynamic/dashboard.php");
+                                 }
+                                 else
+                                 {
                                   header("Location:dashboard.php");
+                                 }
                               }
                               else
                               {

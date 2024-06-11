@@ -215,14 +215,5 @@
         }
     }
     $can=new Candidate($conn);
-    // print_r($candidate->readAll());
-    // $candidate->regno='21UCS108';
-    // $candidate->name="Krishnan M";
-    // $candidate->course='BSC CS';
-    // $candidate->year=1;
-    // $candidate->post_id=11;
-    // $candidate->vote_count=0;
-    // $candidate->image_url="htpps:";
-    // $candidate->shift='1';
-    // echo $candidate->deleteOne(2);
+   
 ?>

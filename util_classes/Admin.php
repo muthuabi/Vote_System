@@ -13,7 +13,6 @@
         {
             $this->conn=$conn;
         }
-
         public function validate_admin($username,$password)
         {
             $password=base64_encode($password);
@@ -55,13 +54,13 @@
                 return null;
             }
         }
-        public function insert_admin($username,$name,$password,$email)
+        public function insert_admin($username,$name,$password,$email,$role)
         {
             try
             {
-            $qry="Insert Into {$this->table}(`username`,`name`,`password`,`email`) VALUES(?,?,?,?)";
+            $qry="Insert Into {$this->table}(`username`,`name`,`password`,`email`,`role`) VALUES(?,?,?,?,?)";
             $qry_prepare=$this->conn->prepare($qry);
-            $qry_prepare->bind_param("ssss",$username,$name,$password,$email);
+            $qry_prepare->bind_param("sssss",$username,$name,$password,$email,$role);
             return $qry_prepare->execute();
             }
             catch(Exception $e)

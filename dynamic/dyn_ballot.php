@@ -14,13 +14,17 @@
 </head>
 
 <body>
-    <div class="container">
-        <h2>SXC VOTE BALLOT</h2>
+    <header>
+        <?php include_once('includes/navbar.php') ?>
+    </header>
+    <main class="content-wrapper">
+        <h2 class='text-center'>SXC VOTE BALLOT</h2>
         <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
+                    <th>Regno</th>
                     <th>Post</th>
                     <th>Vote</th>
                 </tr>
@@ -29,7 +33,7 @@
 
             </tbody>
         </table>
-    </div>
+</main>
 </body>
 <script>
     document.addEventListener("DOMContentLoaded", (main) => {
@@ -52,7 +56,7 @@
                         }
                         else {
                             table_ballot_all.innerHTML += `
-            <tr id=${'can' + values.candidate_id}><td id='candidate_id'>${values.candidate_id}</td><td id='candidate_name'>${values.name}</td><td id='post_name'>${values.post}</td><td id='vote'>${values.vote}</td></tr>
+            <tr id=${'can' + values.candidate_id}><td id='candidate_id'>${values.candidate_id}</td><td id='candidate_name'>${values.name}</td><td id='regno'>${values.regno}</td><td id='post_name'>${values.post} (${(values.post_shift=='Both')?'Shift-I&II':values.post_shift})</td><td id='vote'>${values.vote}</td></tr>
             `;
                         }
                     })

@@ -17,7 +17,10 @@
       
 ?>
 <body>
-    <div class="container">
+    <header>
+            <?php include_once('includes/navbar.php'); ?>
+    </header>
+    <main class="content-wrapper">
         <div class='candidates-container' id="ballot_post_id">
 
         </div>

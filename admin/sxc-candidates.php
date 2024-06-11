@@ -5,12 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Canditate</title>
-    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
-    <script src='../assets/bootstrap/js/jquery.min.js'></script>
-    <script src='../assets/bootstrap/js/bootstrap.bundle.min.js'></script>
-    <link rel="stylesheet" href="../assets/css-js/styles.css">
-    <script src='../assets/css-js/script.js'></script>
-    <script src="../assets/css-js/head_script.js"></script>
+   
 </head>
 
 <body>
@@ -215,13 +210,13 @@
                     <th>Post</th>
                     <th>Shift</th>
                     <th>Course</th>
-                    <th>Votes</th>
+             
                     <th colspan='2'>Actions</th>
                 </tr>
             </thead>
             <tbody>";
 			 for ($i = 0; $i < count($data); $i++) {
-                        echo "<tr><td>{$data[$i]['candidate_id']}</td><td style='text-align:center'><img src='{$data[$i]['image_url']}' class='can_small_img' /></td><td>{$data[$i]['name']}</td><td>{$data[$i]['regno']}</td><td>{$data[$i]['post']}</td><td>{$data[$i]['shift']}</td><td>{$data[$i]['course']}</td><td>{$data[$i]['vote_count']}</td>
+                        echo "<tr><td>{$data[$i]['candidate_id']}</td><td style='text-align:center'><img src='{$data[$i]['image_url']}' class='can_small_img' /></td><td>{$data[$i]['name']}</td><td>{$data[$i]['regno']}</td><td>{$data[$i]['post']}</td><td>{$data[$i]['shift']}</td><td>{$data[$i]['course']}</td>
                 <td><button class='btn btn-warning' type='submit' name='edit' value={$data[$i]['candidate_id']} form='form_temp'>Edit</button></td><td><button class='btn btn-danger' type='submit' name='delete' value={$data[$i]['candidate_id']} form='form_temp'>Delete</button></td></tr>";
                     }
                 

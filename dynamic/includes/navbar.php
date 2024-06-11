@@ -1,4 +1,4 @@
-    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
     <script src='../assets/bootstrap/js/jquery.min.js'></script>
     <script src='../assets/bootstrap/js/bootstrap.bundle.min.js'></script>
     <link rel="stylesheet" href="../assets/css-js/styles.css">
@@ -7,7 +7,7 @@
 <?php 
     //error_reporting(E_ALL && ~E_WARNING);
     session_start();
-    if(isset($_SESSION['admin']) && !empty($_SESSION['admin']) && (isset($_SESSION['admin_role']) && $_SESSION['admin_role']=='admin'))
+    if(isset($_SESSION['admin']) && !empty($_SESSION['admin']) && (isset($_SESSION['admin_role'])))
     {
         $admin=$_SESSION['admin'];
     }
@@ -16,14 +16,14 @@
         header('HTTP/1.1 403 Access Forbidden');
         http_response_code(403);
         echo "<center><b>Access Forbidden<br>
-            <a href='login.php'class='btn btn-link opacity-hover'>Login to Access</a>
+            <a href='../admin/login.php'class='btn btn-link opacity-hover'>Login to Access</a>
         </b></center>";
         exit();
     }
     if(isset($_POST['admin_logout']))
     {
         session_destroy();
-        header("Location:login.php");
+        header("Location:../admin/login.php");
     }
 
 ?>
@@ -96,7 +96,7 @@ if(isset($_POST['change_pass']))
     <div class="container-fluid">
         <div class="brand d-flex align-items-center ">
             <button class="navbar-toggler btn btn-secondary d-flex d-md-none  d-lg-none " type="button" data-bs-toggle="offcanvas" data-bs-target="#maincanvas" aria-controls="maincanvas">
-            &#9776;
+                &#9776;
             </button>
             <a href="#" class="navbar-brand">SXC Elections</a>
         </div>
@@ -131,10 +131,8 @@ if(isset($_POST['change_pass']))
             <h3 class="sidebar-sub-head">Links</h3>
             <ul class="nav navbar-nav">
                 <li class="nav-item"><a href="dashboard.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='dashboard.php')  echo 'nav-active'  ?>">Dashboard</a></li>
-                <li class="nav-item"><a href="sxc-candidates.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='sxc-candidates.php')  echo 'nav-active'  ?>">Candidates</a></li>
-                <?php if(str_contains($_SERVER['REQUEST_URI'],'individual-post.php'))  echo "<li class='nav-item'><a href='#' class='nav-link nav-active'>Individual Candidates</a></li>";?>
+                <?php if(str_contains($_SERVER['REQUEST_URI'],'individual-post.php'))  echo "<li class='nav-item'><a href='#' class='nav-link nav-active'>Candidates</a></li>";?>
                 <li class="nav-item"><a href="dyn_ballot.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='dyn_ballot.php')  echo 'nav-active'  ?>">Ballot Table</a></li>
-                
                 <!-- <li class="nav-item"><a href="" class="nav-link">Contact</a></li> -->
             </ul>
 

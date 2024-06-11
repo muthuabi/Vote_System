@@ -1,3 +1,71 @@
+/* @font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-Black.ttf')
+    format('trutype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto/Roboto-Regular.ttf')
+    format('trutype');
+    font-weight: normal;
+    font-style: normal;
+}
+@keyframes type-feel {
+    from {
+        max-width: 0;
+    }
+
+    to {
+        max-width: 100%;
+    }
+
+}
+
+@keyframes blink-feel {
+
+    from,
+    to {
+        border-right: 3px solid transparent
+    }
+
+    50% {
+        border-right: 3px solid black;
+    }
+
+} */
+.head-role {
+    border-right: 5px solid transparent;
+    padding: 0.1rem 0.5rem;
+    padding-right: 0.2rem;
+    /* animation: type-feel 3s steps(30, end), blink-feel 0.75s step-end 10; */
+    overflow: hidden;
+    white-space: nowrap;
+    width: fit-content;
+
+}
+#home {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center;
+    background-image: url("../images/other_images/homebg.jpg");
+    }
+    .home-box
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap:0.5rem;
+        background-color: rgba(255, 255, 255, 0.322);
+        padding:3rem;
+        border-radius: 7px;
+      
+    }
 .profile-card {
     display: flex;
     gap: 0.5rem;
@@ -21,6 +89,11 @@ nav.navbar {
     padding: 0.2rem 0.1rem !important;
     color: white;
     top: 0;
+}
+nav.navbar  form
+{
+    display: flex !important;
+    gap:0.5rem;
 }
 
 nav .navbar-brand {
@@ -149,12 +222,12 @@ form.login_form
     border-radius: 5px;
 }
 
-button[name='rechoose']
+.opacity-hover
 {
     opacity: 0%;
     transition: opacity 0.2s;
 }
-button[name='rechoose']:hover
+.opacity-hover:hover
 {
     opacity: 25%;
 }
@@ -170,8 +243,9 @@ button[name='rechoose']:hover
   .candidates-container
   {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: wrap;
+    gap:1rem;
   }
   .card.candidate-card
   {
@@ -216,6 +290,43 @@ button[name='rechoose']:hover
     object-position: center;
     border-radius: 50%
   }
+  .dashboard-post-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-post-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 7px;
+    border-left: 10px solid rgb(89, 182, 211);
+    width: 450px;
+    margin: 0.5rem;
+    box-shadow: 1px 2px 12px 5px rgb(231, 229, 229);
+}
+.dash-body-post
+{
+    display:flex;
+    align-items:center;
+    gap:3rem;
+    width:100%
+
+}
+
+.dashboard-post-card-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.dash-data {
+    display: flex;
+    flex-direction: column;
+}
 @media screen and (min-width:768px) {
     .offcanvas {
         visibility: visible;
