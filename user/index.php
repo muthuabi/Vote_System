@@ -27,7 +27,7 @@
         ?>
         <div class="form-container">
             <form action="" method="post" id="user_login" class="login_form">
-                <h2 class="text-center">User Login</h2>
+                <h2 class="text-center">Vote Criteria Selection</h2>
                 <div class="form-group">
                     <label for="username">Shift</label>
                     <select name="shift" id="shift" class='form-control'>
@@ -42,14 +42,16 @@
                         <option value="F">Female</option>
                     </select> 
                 </div>
-                <button type="submit" class="btn btn-dark my-2 w-100" id="user_login_btn" name="user_login">Login</button>
+                <button type="submit" class="btn btn-dark my-2 w-100" id="user_login_btn" name="user_login">Select</button>
             </form>
         </div>
         <?php 
             }
             else
             {
-                die('<center><b>Access Lost! Contact Admin</b></center>');
+                die("<center><b>Access Lost! Contact Admin</b><br>
+                <a  href='cast_vote.php' class='btn btn-dark opacity-hover'>Go to Cast Vote</a>
+                </center>");
             }
         ?>
     </div>
