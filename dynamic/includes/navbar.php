@@ -94,11 +94,17 @@ if(isset($_POST['change_pass']))
 <nav class="navbar navbar-expand">
 
     <div class="container-fluid">
-        <div class="brand d-flex align-items-center ">
+        <div class="brand d-flex align-items-center gap-1 ">
             <button class="navbar-toggler btn btn-secondary d-flex d-md-none  d-lg-none " type="button" data-bs-toggle="offcanvas" data-bs-target="#maincanvas" aria-controls="maincanvas">
                 &#9776;
             </button>
-            <a href="#" class="navbar-brand">SXC Elections</a>
+            <img src="../assets/images/other_images/logo2.png" class="sxc-header-icon" alt="">
+            <div>
+            <b class="d-none d-md-block d-lg-block">St. Xavier's College (Autonomous), Palayamkottai - 627002</b>
+            <b class='d-block d-md-none d-lg-none'>SXC</b>
+            <small class="d-none d-md-block d-lg-block">Student Council Election (2024-25)</small>
+            <small class='d-block d-md-none d-lg-none'>2024-25</small>
+            </div>
         </div>
         <div class="profile-card">
             <img src="../assets/images/other_images/bg1.jpg" class="icon">
@@ -112,11 +118,11 @@ if(isset($_POST['change_pass']))
 </nav>
 <section class="main-sidebar offcanvas offcanvas-start" tabindex="-1" id="maincanvas" aria-labelledby="maincanvasLabel">
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="maincanvasLabel">SXC Elections</h5>
+        <h5 class="offcanvas-title " id="maincanvasLabel">SXC Election</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close">
         </button>
     </div>
-    <div class="offcanvas-body bg-dark">
+    <div class="offcanvas-body">
         <div class="sidebar-card">
             <h3 class="sidebar-sub-head">Profile</h3>
             <div class="sidebar-inner-card">

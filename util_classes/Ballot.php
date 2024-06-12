@@ -29,6 +29,26 @@
             }
 
         }
+        public function showMaxbyPostAll()
+        {
+            try{
+            $qry="Select op.post_id,oc.candidate_id as 'max_candidate_id',ov.vote from {$this->table1} as oc inner join {$this->table2} as op on op.post_id=oc.post_id left join {$this->table3} as ov on oc.candidate_id=ov.candidate_id  where (op.post_id,ov.vote) in (Select p.post_id,max(v.vote) FROM {$this->table1} as c inner join {$this->table2} as p on p.post_id=c.post_id left join {$this->table3} as v on c.candidate_id=v.candidate_id  group by p.post_id)";
+            $qry_prepare=$this->conn->prepare($qry);
+            $qry_prepare->execute();
+            $res=$qry_prepare->get_result();
+            $max_post=[];
+            while($result=$res->fetch_assoc())
+                $max_post[$result['post_id']]=$result;
+            return $max_post;
+                
+            }
+            catch(Exception $e)
+            {
+                
+                return null;
+            }
+
+        }
         public function totalVotesCandidatesbyPost()
         {
             try{
@@ -85,7 +105,7 @@
             {
                 $votes[]=$result;
             }
-            return ['data'=>$votes,'num_rows'=>$res->num_rows];
+            return ['data'=>$votes,'max_post_data'=>$this->showMaxbyPostAll(),'num_rows'=>$res->num_rows];
             }
             catch(Exception $e)
             {
@@ -97,7 +117,7 @@
 
     }
     $ballot=new Ballot($conn);
-
+    // print_r($ballot->showMaxbyPostAll());
     if(isset($_GET['ballot']) && !empty(trim($_GET['ballot'])))
     {
         $ballot_case=$_GET['ballot'];

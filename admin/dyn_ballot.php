@@ -18,20 +18,15 @@
         <?php include_once('includes/navbar.php') ?>
     </header>
     <main class="content-wrapper">
-        <h2 class='text-center'>SXC VOTE BALLOT</h2>
-        <table class="table table-bordered">
+        <h3 class='text-center fw-bold' style='color:gray'>SXC Vote Ballot</h3>
+        <table class="table">
             <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Regno</th>
-                    <th>Post</th>
-                    <th>Vote</th>
-                </tr>
+            
             </thead>
             <tbody id="ballot_all">
-
+                  
             </tbody>
+         
         </table>
 </main>
 </body>
@@ -45,7 +40,8 @@
                 dataType: 'json'
             })
                 .done(function (data) {
-            
+                    const pos_arr=[];
+                
                     data.data.forEach(values => {
                         values.vote = (values.vote ? values.vote : 0);
                         if (document.querySelector(`#can${values.candidate_id}`)) {
@@ -53,10 +49,16 @@
                             // document.querySelector(`#can${values.candidate_id} #candidate_name`).innerHTML=values.name;
                             // document.querySelector(`#can${values.candidate_id} #post_name`).innerHTML=values.post;
                             document.querySelector(`#can${values.candidate_id} #vote`).innerHTML = values.vote;
+                            document.querySelector(`#can${values.candidate_id} #vote_status`).innerHTML = (data.max_post_data[values.post_id].max_candidate_id==values.candidate_id)?'&uarr;':'&darr;';
                         }
                         else {
+                            if(!pos_arr.includes(values.post_id)){
+                                table_ballot_all.innerHTML+=`<br><tr class='common_post'><th id='common_post' style='text-align:left;text-transform:uppercase' colspan='5'>${values.post} ${(values.post_shift=='Both')?'':'('+values.post_shift+')'}</th></tr>`;
+                                pos_arr.push(values.post_id);
+                            }
                             table_ballot_all.innerHTML += `
-            <tr id=${'can' + values.candidate_id}><td id='candidate_id'>${values.candidate_id}</td><td id='candidate_name'>${values.name}</td><td id='regno'>${values.regno}</td><td id='post_name'>${values.post} (${(values.post_shift=='Both')?'Shift-I&II':values.post_shift})</td><td id='vote'>${values.vote}</td></tr>
+            <tr class='' id=${'can' + values.candidate_id}><td id='candidate_id' >${values.candidate_id}</td><td id='candidate_name' style='text-transform:uppercase'>${values.name}</td><td id='regno'>${values.regno}</td><td><b id='vote'>${values.vote}</b>  <span id='vote_status'>${(data.max_post_data[values.post_id].max_candidate_id==values.candidate_id)?'&uarr;':'&darr;'}</span></td></tr>
+         
             `;
                         }
                     })
