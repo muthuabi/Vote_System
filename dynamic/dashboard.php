@@ -46,7 +46,7 @@
                 </div>
                 <div class='dashboard-post-card-content'>
                     <div class='dash-head-post'>
-                        <h4 id='post_name'>${values.post} (${(values.post_shift=='Both')?'Shift I & II':values.post_shift})</h4>
+                        <h4 id='post_name'>${values.post} ${(values.post_shift=='Both')?'':'('+values.post_shift+')'}</h4>
                     </div>
                     <div class='dash-body-post'>
                         <div class='dash-data-content'>

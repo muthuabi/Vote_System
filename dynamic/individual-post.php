@@ -21,7 +21,7 @@
             <?php include_once('includes/navbar.php'); ?>
     </header>
     <main class="content-wrapper">
-        <div class='candidates-container' id="ballot_post_id">
+        <div class='candidates-container individual-card-container' id="ballot_post_id">
 
         </div>
     </div>
@@ -50,8 +50,8 @@
                             }
                             else {
                                  ballot_post.innerHTML += `
-                  <div class='card candidate-card' id='can${values.candidate_id}' style='width: 400px'>
-                    <h5 class='card-header' id='post_name'>${values.post} - ${values.post_shift}</h5>
+                  <div class='card candidate-card individual-card' id='can${values.candidate_id}' >
+                    <h5 class='card-header' id='post_name'>${values.post} ${(values.post_shift=='Both')?'':'- '+values.post_shift}</h5>
                     <div class='card-img-container'>
                     <img src='${values.image_url}' class='card-img-top' alt=''>
                     </div>

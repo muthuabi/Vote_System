@@ -286,6 +286,7 @@ form.login_form
     flex-wrap: wrap;
     gap:1rem;
     margin: 0.5rem 0rem;
+    justify-content: center;
   }
   .card-container-head
   {
@@ -318,18 +319,23 @@ form.login_form
     margin-top: 0;
     padding:0.2rem 0.7rem;
     background-color: #600000;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+
     color:white;
     text-align: center;
     display: flex;
     flex-direction: column;
     gap:0.1px;
   }
+  .card center
+  {
+    background-color: #600000;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
   .card #vote
   {
     font-weight: bolder;
-    font-size: large;
+   
     display: flex;
     gap:1rem;
     justify-content: center;
@@ -348,12 +354,14 @@ form.login_form
   }
   .card .vote_btn:hover
   {
-    background-color: rgb(233, 207, 177);
-    color:rgb(73, 70, 68);
+    background-color: green;
+    /* box-shadow: 0px 0px 7px 2px green; */
+    border: 0.5px solid rgba(31, 30, 30, 0.863);
+  
   }
   .result-modal
   {
-    margin-top: 2rem;
+    margin-top: 4rem;
     animation: anime-pull-up 1s ease-in-out;
   }
   .card-img-container
@@ -365,7 +373,7 @@ form.login_form
   }
   .card-img-container .card-img-top
   {
-    height:225px;
+    height:250px;
     width: 225px;
     object-fit: cover;
     object-position: top;
@@ -451,7 +459,7 @@ footer
 {
     background-color: #600000;
     color:rgb(209, 209, 209);
-    padding:3.2rem 1rem;
+    padding:3rem 1rem;
     border-top: 5px solid #daa106  ;
     border-bottom: 5px solid #daa106 ;
 }
@@ -461,6 +469,12 @@ footer
     justify-content: space-around;
     align-items: center;
 }
+.footer-head b
+{
+    font-size: small;
+    color: gray;
+}
+
 @media screen and (min-width:768px) {
     .offcanvas {
         visibility: visible;
@@ -475,6 +489,104 @@ footer
         padding:0rem 0.3rem;
         margin-left: 210px;
     }
+}
+@media screen and (min-width:1400px) 
+{
+        body
+        {
+            font-size:xx-large;
+        }
+        .icon
+        {
+            width:50px;
+            height: 50px;
+        }
+      .offcanvas
+      {
+        width: 350px;
+      }  
+      .sidebar-sub-head
+      {
+        padding-top:1rem !important;
+        padding-bottom: 1rem !important;
+      }
+      nav.navbar
+      {
+        align-items: center;
+        padding:1rem 0.5rem !important;
+      }
+      a.navbar-brand,.offcanvas-title
+      {
+        font-size: larger;
+      }
+      nav .btn.btn-dark
+      {
+        font-size: 100%;
+      }
+      .content-wrapper 
+      {
+        margin-top: 6rem;
+        margin-left: 350px;
+      }
+     
+      .dashboard-post-card
+      {
+        min-width:700px;
+     
+        font-size: xx-large;
+        padding:2rem;
+      }
+      #post_name
+      {
+        font-size: 130%;
+      }
+      a.btn.rounded-circle
+      {
+        display: flex;
+        width:70px;
+        height:70px;
+        align-items: center;
+        justify-content: center;
+        padding:1rem;
+        
+      }
+      .dashboard-post-card-icon img
+      {
+        width:150px;
+        height:150px;
+      }
+      .individual-card-container
+      {
+        display: flex;
+        justify-content: center;
+        gap:2rem;
+      }
+      .individual-card-container .individual-card
+      {
+        min-width:600px;
+      }
+      .individual-card-container .individual-card img
+      {
+        width:350px;
+        height: 350px;
+      }
+      .individual-card-container .individual-card span
+      {
+        font-size: 150%;
+      }
+      .individual-card-container .individual-card .card-title
+      {
+        font-size: 45px;
+      }
+      .individual-card-container .individual-card .card-title small
+      {
+        font-size: 30px;
+      }
+      .individual-card-container .individual-card .card-text
+      {
+        font-size: 35px;
+      }
+      
 }
 @media screen and (max-width:768px) 
 {

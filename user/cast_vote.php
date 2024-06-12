@@ -163,7 +163,7 @@
                                 </div>
                             </div>
                             </div>
-                        </div>";
+                        </div><br>";
                     session_destroy();
                     header("Refresh:3");
                 }

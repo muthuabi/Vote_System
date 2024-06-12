@@ -50,7 +50,7 @@
                             }
                             else {
                                  ballot_post.innerHTML += `
-                  <div class='card candidate-card' id='can${values.candidate_id}' style='width: 400px'>
+                  <div class='card candidate-card' id='can${values.candidate_id}' >
                     <h5 class='card-header' id='post_name'>${values.post} - ${values.post_shift}</h5>
                     <div class='card-img-container'>
                     <img src='${values.image_url}' class='card-img-top' alt=''>
