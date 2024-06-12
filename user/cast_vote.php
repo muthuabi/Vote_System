@@ -14,8 +14,20 @@
 
 </head>
 
-<body>
-    <div class="container">
+<body class="need-color">
+    <style>
+     
+    </style>
+    <header class="persistent-navbar d-flex flex-column align-items-center">
+        <nav class="sxc-header">
+            <img src="../assets/images/other_images/logo2.png" class="sxc-header-icon" alt="">
+            <h5>St. Xavier's College (Autonomous), Palayamkottai - 627002</h5>
+        </nav>
+        <nav class="sxc-council-header">
+            <h5>Students Council Election 2024-25</h5>
+        </nav>
+    </header>
+
         <header>
             <?php
             session_start();
@@ -52,13 +64,15 @@
                     die($e->getMessage());
                 }
                 echo "<form method='post' style='width:fit-content;position:fixed;top:0;'><button type='submit' class='btn btn-secondary opacity-hover'  name='rechoose'>rechoose</button></form>";
-                
+
             ?>
         </header>
-        
-        <main class="d-flex flex-column  justify-content-center align-items-center  w-100  ">
+
+        <main class="main-card-container ">
+           
+          
         <?php
-            if (isset($_POST['add_vote'])) {
+                if (isset($_POST['add_vote'])) {
                     try {
                         if (!$vote->addVote($_POST['candidate_id']))
                             throw new Exception('Some Error has Occured');
@@ -70,7 +84,7 @@
                 for ($i = 0; $i < count($post_array); $i++) {
                     $post_id_name[] = ['post_id' => $post_array[$i]['post_id'], 'post' => $post_array[$i]['post'], 'post_shift' => $post_array[$i]['post_shift']];
                 }
-                echo "<br>";
+                
 
                 if (!isset($_SESSION['init'])) { //Problem Here!
                     for ($i = 0; $i < count($post_array); $i++) {
@@ -85,27 +99,27 @@
 
                     if (isset($_SESSION[$post_id_name[$i]['post']]) && $_SESSION[$post_id_name[$i]['post']] == 'Not_Voted') {
                         $voted = false;
-                        echo "<h2 class='p-2 text-uppercase '>{$post_id_name[$i]['post']} - "; 
-                        echo ($post_id_name[$i]['post_shift']=='Both')?'(Shift I & II)':$post_id_name[$i]['post_shift'];
-                        echo"</h2>";
+                        echo " <div class='card-container-head'><h2 class=''>{$post_id_name[$i]['post']}  ";
+                        echo ($post_id_name[$i]['post_shift'] == 'Both') ? '' : '('.$post_id_name[$i]['post_shift'].')';
+                        echo "</h2></div>";
                         $post_id = $post_id_name[$i]['post_id'];
                         if ($res = $can->readAllbyPost($post_id)) {
 
                             $candidates = $res['data'];
-                            echo "<div class='candidates-container'>";
+                            $count = count($candidates);
+                            echo "<div class='candidates-container' style='grid-template-columns:repeat({$count},1fr);' >";
                             for ($j = 0; $j < count($candidates); $j++) {
-                                echo "<form class='card candidate-card' action='' method='post' id='can{$candidates[$j]['candidate_id']}' style='width: 350px'>
+                                echo "<form class='card candidate-card' action='' method='post' id='can{$candidates[$j]['candidate_id']}' >
                                 <div class='card-img-container'>
                                 <img src='{$candidates[$j]['image_url']}' class='card-img-top' alt=''>
                                 </div>
                                 <div class='card-body '>
-                                <h5 class='card-title d-flex align-items-center gap-1' id='candidate_name'>{$candidates[$j]['name']}</h5>
+                                <h5 class='text-uppercase' id='candidate_name'>{$candidates[$j]['name']}</h5>
                                 <b class='card-text' id='candidate_regno'>{$candidates[$j]['regno']}</b>
                                 </div>
-                                <ul class='list-group list-group-flush'>
-                                <li class='list-group-item' id='candidate_course'>{$candidates[$j]['course']}</li>
-                                <button class='btn btn-success' type='submit' name='add_vote'>Vote</button>
-                                </ul>
+                                <center>
+                                <button class='btn btn-success vote_btn'  type='submit' name='add_vote'>Vote</button>
+                               </center>
                                 <input type='hidden' name='candidate_name' value='{$candidates[$j]['name']}' />
                                 <input type='hidden' name='regno' value='{$candidates[$j]['regno']}' />
                                 <input type='hidden' name='candidate_id' value='{$candidates[$j]['candidate_id']}'/>
@@ -121,12 +135,9 @@
                     }
                 }
                 echo "";
+             
                 if ($voted) {
-                    // echo "<center>";
-                    // echo "You Voted for <br/>";
-                    // // print_r($_SESSION);
-                    // 
-                    // echo "<center>";
+                 
                     echo "<div class='modal fade result-modal' style='display:block;z-index:10000;opacity:100%'  data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1' aria-labelledby='responsemodalLabel' aria-hidden='true'>
                             <div class='modal-dialog modal-dialog-centered '>
                             <div class='modal-content'>
@@ -138,12 +149,13 @@
                                     <span id='icon' style='font-size:70px'>&#9432;</span>
                                     <table style='width:fit-content'>
                                         ";
-                                    foreach ($_SESSION as $key => $value) {
-                                                if ($key == "user_select" || $key == "init")
-                                                    continue;
-                                                echo "<tr><th style='text-align:left'>{$key}</th><td style='width:20px'></td><td>{$value['candidate_name']} ({$value['candidate_regno']})</td></tr>";
-                                            }
-                                    echo "</table>
+                                  
+                    foreach ($_SESSION as $key => $value) {
+                        if ($key == "user_select" || $key == "init" || $key=="admin" || $key=="admin_name" || $key=="admin_role" || $key=="admin_email")
+                            continue;
+                        echo "<tr><th style='text-align:left'>{$key}</th><td style='width:20px'></td><td>{$value['candidate_name']} ({$value['candidate_regno']})</td></tr>";
+                    }
+                    echo "</table>
                                     
                                 </div>
                                 <div class='modal-footer d-flex justify-content-center'>
@@ -163,7 +175,11 @@
 
         ?>
         </main>
-    </div>
+  
+    <footer>
+            <div class="footer-head">
+                <b>Designed & Maintained by SXC Web Team | © 2022 St. Xavier's College. All rights reserved.</b><a class="nav-link text-white" href="../index.php"><b>Home</b></a>
+            </div>
+    </footer>
 </body>
-
 </html>

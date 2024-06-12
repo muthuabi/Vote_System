@@ -14,6 +14,15 @@
 </head>
 
 <body>
+<header class="persistent-navbar d-flex flex-column align-items-center">
+        <nav class="sxc-header">
+            <img src="../assets/images/other_images/logo2.png" class="sxc-header-icon" alt="">
+            <h5>St. Xavier's College (Autonomous), Palayamkottai - 627002</h5>
+        </nav>
+        <nav class="sxc-council-header">
+            <h5>Students Council Election 2024-25</h5>
+        </nav>
+    </header>
     <div class="container">
         <?php 
             session_start();
@@ -55,6 +64,11 @@
             }
         ?>
     </div>
+    <footer>
+            <div class="footer-head">
+                <b>Designed & Maintained by SXC Web Team | © 2022 St. Xavier's College. All rights reserved.</b><a class="nav-link text-white" href="../index.php"><b>Home</b></a>
+            </div>
+    </footer>
 </body>
 
 </html>

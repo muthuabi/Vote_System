@@ -35,6 +35,24 @@
     }
 
 } */
+@keyframes anime-pull-up {
+    from{
+        opacity:0;
+        transform: translateY(20px);
+    }
+    to
+    {
+        opacity:100%;
+        transform: translateY(0px);
+    }
+    
+}
+ body.need-color
+ {
+    background-color: #fcf3e7;
+ 
+ }
+
 .head-role {
     border-right: 5px solid transparent;
     padding: 0.1rem 0.5rem;
@@ -49,11 +67,10 @@
     display:flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
     background-position:center;
-    background-image: url("../images/other_images/homebg.jpg");
+    /* background-image: url("../images/other_images/homebg.jpg"); */
     }
     .home-box
     {
@@ -61,9 +78,11 @@
         flex-direction: column;
         align-items: center;
         gap:0.5rem;
-        background-color: rgba(255, 255, 255, 0.322);
+        background-color: #ecd5b6;
         padding:3rem;
         border-radius: 7px;
+        margin: 1rem;
+        animation: anime-pull-up 1s ease-in-out;
       
     }
 .profile-card {
@@ -206,7 +225,9 @@ form .form-group
 .form-container
 {
     display: flex;
-    height:90vh;
+    padding:1rem;
+    margin: 1rem;
+   height: 65vh;
     width:100%;
     justify-content: center;
     align-items: center;
@@ -240,17 +261,40 @@ form.login_form
     height:fit-content;
 	z-index:100000;
   }
-  .candidates-container
+  .main-card-container
   {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .candidates-container
+  {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
     flex-wrap: wrap;
     gap:1rem;
+    margin: 0.5rem 0rem;
+  }
+  .card-container-head
+  {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: #ddd3c5cb;
+    padding: 0.5rem 1rem;
   }
   .card.candidate-card
   {
     margin:0.5rem;
     border-radius: 10px;
+    height: fit-content;
+    width: 300px;
+    /* border:5px solid rgb(155, 167, 170); */
+    background-color:white;
+    box-shadow: 0px 0px 12px 5px rgb(231, 234, 235);
+    
   }
   .card .card-header
   {
@@ -258,14 +302,19 @@ form.login_form
     padding:0.8rem 0.5rem;
     text-align: center;
     border:0.5px solid rgb(223, 217, 217);
-
   }
   .card .card-body
   {
     margin-top: 0;
     padding:0.2rem 0.7rem;
-    background-color: rgb(238, 237, 237);
-    border-radius: 5px;
+    background-color: #600000;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color:white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap:0.1px;
   }
   .card #vote
   {
@@ -275,20 +324,42 @@ form.login_form
     gap:1rem;
     justify-content: center;
   }
+  .card .vote_btn
+  {
+    text-align: center;
+    text-transform: uppercase;
+    width:fit-content;
+    padding:0.7rem 3rem;
+    margin:0.5rem;
+    border-radius: 25px;
+    background-color: #daa106;
+    transition: all 0.5s;
+    border:0.5px solid #600000;
+  }
+  .card .vote_btn:hover
+  {
+    background-color: rgb(233, 207, 177);
+    color:rgb(73, 70, 68);
+  }
+  .result-modal
+  {
+    margin-top: 2rem;
+    animation: anime-pull-up 1s ease-in-out;
+  }
   .card-img-container
   {
     display: flex;
     justify-content: center;
-    padding:1rem;
-    background-color: rgb(223, 222, 222);
+    background-color: rgb(248, 248, 248);
+    padding: 1rem 0rem;
   }
   .card-img-container .card-img-top
   {
-    height:250px;
-    width: 250px;
+    height:225px;
+    width: 225px;
     object-fit: cover;
-    object-position: center;
-    border-radius: 50%
+    object-position: top;
+  
   }
   .dashboard-post-cards {
     display: flex;
@@ -325,6 +396,60 @@ form.login_form
 .dash-data {
     display: flex;
     flex-direction: column;
+}
+.result-modal
+{
+    position: relative;
+    padding:0.5rem;
+}
+/* INDEX HEADER AND FOOTER FOR USER AREA */
+.sxc-header
+{
+    padding:0.5rem 1rem;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    background-color:#600000;
+    color:white;
+    align-items: center;
+    gap:1rem;
+    border-top: 2px solid #daa106  ;
+    border-bottom: 5px solid #daa106  ;
+}
+.sxc-council-header
+{
+    padding:0.5rem 1rem;
+    width: 100%;
+    background-color:#f3d881bb;
+    display:flex;
+    color:#600000;
+    justify-content:center;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+}
+.sxc-council-header h5
+{
+    font-weight: bold;
+}
+.sxc-header-icon
+{
+    width:50px;
+    height: 50px;
+}
+footer
+{
+    background-color: #600000;
+    color:rgb(209, 209, 209);
+    padding:1.2rem 1rem;
+    border-top: 5px solid #daa106  ;
+    border-bottom: 5px solid #daa106  ;
+}
+.footer-head
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 @media screen and (min-width:768px) {
     .offcanvas {
