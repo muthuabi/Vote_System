@@ -70,7 +70,9 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position:center;
-    /* background-image: url("../images/other_images/homebg.jpg"); */
+    background-image: url(../images/other_images/homebg1.jpg);
+    height: 70vh;
+    
     }
     .home-box
     {
@@ -78,12 +80,20 @@
         flex-direction: column;
         align-items: center;
         gap:0.5rem;
-        background-color: #ecd5b6;
-        padding:3rem;
+        background-color: #f1cf9054;
+        padding:5rem;
         border-radius: 7px;
-        margin: 1rem;
+        margin: 1.5rem;
         animation: anime-pull-up 1s ease-in-out;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position:center;
+        width: fit-content;
       
+    }
+    .home-box .head-name
+    {
+        color:#600000;
     }
 .profile-card {
     display: flex;
@@ -324,7 +334,7 @@ form.login_form
     gap:1rem;
     justify-content: center;
   }
-  .card .vote_btn
+  .vote_btn
   {
     text-align: center;
     text-transform: uppercase;
@@ -441,9 +451,9 @@ footer
 {
     background-color: #600000;
     color:rgb(209, 209, 209);
-    padding:1.2rem 1rem;
+    padding:3.2rem 1rem;
     border-top: 5px solid #daa106  ;
-    border-bottom: 5px solid #daa106  ;
+    border-bottom: 5px solid #daa106 ;
 }
 .footer-head
 {

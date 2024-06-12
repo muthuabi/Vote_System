@@ -25,11 +25,11 @@
     </header>
     <main id="home">
         <div class="home-box">
-            <h1 class="head-name head-role">St Xavier's College</h1>
+            <h1 class="head-name head-role">St Xavier's College (Autonomous)</h1>
             <p class="lead text-center">
                 Welcome to the SXC Vote System!
             </p>
-            <a href="user/" class="btn btn-lg btn-dark px-5">Go to Vote</a>
+            <a href="user/" class="btn btn-lg btn-dark vote_btn px-5">Go to Vote</a>
             <a href="admin/login.php" class="btn btn-dark opacity-hover" style='position:fixed;bottom:0.5rem'>Admin</a>
         </div>
     </main>
