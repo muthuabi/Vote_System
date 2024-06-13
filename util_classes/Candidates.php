@@ -14,6 +14,7 @@
         public $post_id=null;
         public $vote_count=0;
         public $image_url=null;
+        public $election_year='';
         public $shift=null;
         public $error=null;
         public function __construct($conn)
@@ -147,9 +148,9 @@
             {
                 throw new Exception('Shift Shoulde be either 1 or 2');
             }
-            $qry="INSERT INTO {$this->table} (`regno`,`name`,`shift`,`course`,`year`,`post_id`,`vote_count`,`image_url`) VALUES (?,?,?,?,?,?,?,?)";
+            $qry="INSERT INTO {$this->table} (`regno`,`name`,`shift`,`course`,`year`,`post_id`,`vote_count`,`image_url`,`election_year`) VALUES (?,?,?,?,?,?,?,?,?)";
             $qry_prepare=$this->conn->prepare($qry);
-            $qry_prepare->bind_param("ssssiiis",$this->regno,$this->name,$this->shift,$this->course,$this->year,$this->post_id,$this->vote_count,$this->image_url);
+            $qry_prepare->bind_param("ssssiiiss",$this->regno,$this->name,$this->shift,$this->course,$this->year,$this->post_id,$this->vote_count,$this->image_url,$this->election_year);
             return $qry_prepare->execute();
             }
             catch(Exception $e)
@@ -199,9 +200,9 @@
         public function update($id)
         {
             try{
-            $qry="UPDATE {$this->table} SET `regno`=?,`name`=?,`shift`=?,`course`=?,`year`=?,`post_id`=?,`vote_count`=?,`image_url`=? where candidate_id=?";
+            $qry="UPDATE {$this->table} SET `regno`=?,`name`=?,`shift`=?,`course`=?,`year`=?,`post_id`=?,`vote_count`=?,`image_url`=?,`election_year`=? where candidate_id=?";
             $qry_prepare=$this->conn->prepare($qry);
-            $qry_prepare->bind_param("ssssiiisi",$this->regno,$this->name,$this->shift,$this->course,$this->year,$this->post_id,$this->vote_count,$this->image_url,$id);
+            $qry_prepare->bind_param("ssssiiissi",$this->regno,$this->name,$this->shift,$this->course,$this->year,$this->post_id,$this->vote_count,$this->image_url,$this->election_year,$id);
             $qry_prepare->execute();
             $this->error=null;
             return $this->conn->affected_rows;

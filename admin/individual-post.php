@@ -61,7 +61,7 @@
                     </div>
                     <ul class='list-group list-group-flush'>
                       <li class='list-group-item' id='candidate_course'>${values.course}</li>
-                      <li class='list-group-item  text-center' id='vote'><span id='vote_number'>${values.vote}</span><span id='vote_status'>${(max_candidate_id==values.candidate_id)?'&uarr;':'&darr;'}</span> </li>
+                      <li class='list-group-item  text-center' id='vote' style='overflow:hidden'><span id='vote_number'>${values.vote}</span><span id='vote_status'${(max_candidate_id==values.candidate_id)?' class=up_vote > &uarr;':' class=down_vote> &darr;'}</span> </li>
                     </ul>
                 </div>
                 

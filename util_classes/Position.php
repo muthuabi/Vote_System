@@ -87,7 +87,7 @@ class Position
     {
 
         try {
-            if ($this->shift != 'Shift-I' && $this->shift != 'Shift-II') {
+            if ($this->shift != 'Shift-I' && $this->shift != 'Shift-II' && $this->shift != 'Both') {
                 throw new Exception('Shift Shoulde be either 1 or 2');
             }
             $qry = "INSERT INTO {$this->table} (`post`,`description`,`post_shift`) VALUES (?,?,?)";
@@ -130,7 +130,7 @@ class Position
     public function update($id)
     {
         try {
-            if ($this->shift != 'Shift-I' && $this->shift != 'Shift-II') {
+            if ($this->shift != 'Shift-I' && $this->shift != 'Shift-II' && $this->shift!='Both') {
                 throw new Exception('Shift Shoulde be either 1 or 2');
             }
             $qry = "UPDATE {$this->table} SET `post`=?,`description`=?,`post_shift`=? where post_id=?";

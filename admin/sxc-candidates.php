@@ -36,6 +36,7 @@
                 $add_candidate->post_id = $_POST['post_id'];
                 $add_candidate->year = $_POST['year'];
                 $add_candidate->course = $_POST['course'];
+                $add_candidate->election_year=$_POST['election_year'];
                 if (isset($_FILES['image_url'])) {
                     $types = ['image/jpeg', 'image/png', 'image/jpg'];
                     if (!in_array($_FILES['image_url']['type'], $types))
@@ -68,6 +69,7 @@
                 $edit_candidate->post_id = $_POST['post_id'];
                 $edit_candidate->year = $_POST['year'];
                 $edit_candidate->course = $_POST['course'];
+                $edit_candidate->election_year=$_POST['election_year'];
                 $edit_candidate->candidate_id = $_POST['candidate_id'];
                 if (isset($_FILES['image_url']) && !$_FILES['image_url']['error']) {
                     $types = ['image/jpeg', 'image/png', 'image/jpg'];
@@ -161,6 +163,10 @@
                                 <label for="year">Year</label>
                                 <input type="text" name='year' id='year' value="<?php if (isset($value)) echo $value['year'];
                                                                                 else echo '3'; ?>" readonly class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="election_year">Election Year</label>
+                                <input type="text" name='election_year' id='election_year' value="<?php if (isset($value)) echo $value['election_year']; ?>" required class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="post">Position</label>
