@@ -19,13 +19,17 @@ window.addEventListener("resize",(e)=>{
        
 })
 document.addEventListener("DOMContentLoaded",(event)=>{
-
+    const date=new Date();
+    const academic_year=date.getFullYear()+'-'+((date.getFullYear()+1)%100);
+   
     const on_off=document.getElementById('on_off');
     const liveblink=document.getElementById('live-blink');
     const votestatus=document.getElementById('vote_status');
     const footerhead=document.querySelector('.footer-head b');
     footerhead.innerHTML="Designed & Maintained by SXC ERP and Web Team | © 2024 St. Xavier's College. All rights reserved";
-	function init_toast(message = "", id = "my_toast_offline") {
+	document.querySelector('.sxc-council-header h5 ').innerHTML='Students Council Election '+academic_year;
+    document.querySelector('#ballot-head b').innerHTML='Students Council Election '+academic_year; 
+    function init_toast(message = "", id = "my_toast_offline") {
     const toast = document.querySelector(`.toast#${id}`);
     if (message)
       document.querySelector(`#${id} #message`).innerText = message;

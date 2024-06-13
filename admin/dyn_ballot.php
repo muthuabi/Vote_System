@@ -19,7 +19,7 @@
     </header>
     <main class="content-wrapper">
         <div id="ballot_head">
-            <b>Student Council Election (2024-25) </b>
+            <b>Student Council Election (2024-25)</b>
             <div>
                 <strong id="live-blink"></strong><strong id="live">live</strong>
             </div>

@@ -130,9 +130,12 @@ if(isset($_POST['change_pass']))
         <div class="sidebar-card">
             <ul class="nav navbar-nav">
                 <li class="nav-item"><a href="dashboard.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='dashboard.php')  echo 'nav-active'  ?>">Dashboard</a></li>
+                <li class="nav-item"><a href="sxc-positions.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='sxc-positions.php')  echo 'nav-active'  ?>">Add Positions</a></li>
                 <li class="nav-item"><a href="sxc-candidates.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='sxc-candidates.php')  echo 'nav-active'  ?>">Add Candidates</a></li>
                 <?php if(str_contains($_SERVER['REQUEST_URI'],'individual-post.php'))  echo "<li class='nav-item'><a href='#' class='nav-link nav-active'>Individual Candidates</a></li>";?>
                 <li class="nav-item"><a href="dyn_ballot.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='dyn_ballot.php')  echo 'nav-active'  ?>">Ballot Table</a></li>
+                <li class="nav-item"><a href="sxc-migrate.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='sxc-migrate.php')  echo 'nav-active'  ?>">Migrate Data</a></li>
+                <li class="nav-item"><a href="sxc-termination.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='sxc-termination.php')  echo 'nav-active'  ?>">Delete Table</a></li>
                 <li class="nav-item"><button   type='submit' name="admin_change_pass" style="width:100%;text-align:left" class="btn btn-link  nav-link <?php if(isset($_POST['admin_change_pass'])) echo 'nav-active'; ?> " form="change_pass_temp_form" >Change Password</button> </li>
             </ul>
 

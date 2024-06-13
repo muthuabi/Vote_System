@@ -8,7 +8,8 @@ class Position
     public $post_id = null;
     public $post = null;
     public $description = '';
-    public $shift = null;
+    public $post_shift = null;
+    public $who_can_vote='';
     public $error=null;
     public function __construct($conn)
     {
@@ -30,12 +31,12 @@ class Position
             return null;
         }
     }
-    public function readShiftAll($shift)
+    public function readShiftAll($post_shift)
     {
         try {
             $qry = "Select * from {$this->table} where post_shift=?";
             $qry_prepare=$this->conn->prepare($qry);
-            $qry_prepare->bind_param("s",$shift);
+            $qry_prepare->bind_param("s",$post_shift);
             $qry_prepare->execute();
             $res=$qry_prepare->get_result();
             $position = [];
@@ -49,12 +50,12 @@ class Position
             return null;
         }
     }
-    public function readShiftGenderAll($shift,$gender)
+    public function readShiftGenderAll($post_shift,$gender)
     {
         try {
             $qry = "Select * from {$this->table} where (post_shift=? or post_shift='Both') and (who_can_vote=? or who_can_vote='MF'); ";
             $qry_prepare=$this->conn->prepare($qry);
-            $qry_prepare->bind_param("ss",$shift,$gender);
+            $qry_prepare->bind_param("ss",$post_shift,$gender);
             $qry_prepare->execute();
             $res=$qry_prepare->get_result();
             $position = [];
@@ -87,12 +88,15 @@ class Position
     {
 
         try {
-            if ($this->shift != 'Shift-I' && $this->shift != 'Shift-II' && $this->shift != 'Both') {
+            if ($this->post_shift != 'Shift-I' && $this->post_shift != 'Shift-II' && $this->post_shift != 'Both') {
                 throw new Exception('Shift Shoulde be either 1 or 2');
             }
-            $qry = "INSERT INTO {$this->table} (`post`,`description`,`post_shift`) VALUES (?,?,?)";
+            if ($this->who_can_vote != 'M' && $this->who_can_vote != 'F' && $this->who_can_vote!='MF') {
+                throw new Exception('who can vote should be MF,M or F');
+            }
+            $qry = "INSERT INTO {$this->table} (`post`,`description`,`post_shift`,`who_can_vote`) VALUES (?,?,?,?)";
             $qry_prepare = $this->conn->prepare($qry);
-            $qry_prepare->bind_param("sss", $this->post, $this->description, $this->shift);
+            $qry_prepare->bind_param("ssss", $this->post, $this->description, $this->post_shift,$this->who_can_vote);
             return $qry_prepare->execute();
         } catch (Exception $e) {
             echo $e->getMessage();
@@ -130,12 +134,15 @@ class Position
     public function update($id)
     {
         try {
-            if ($this->shift != 'Shift-I' && $this->shift != 'Shift-II' && $this->shift!='Both') {
+            if ($this->post_shift != 'Shift-I' && $this->post_shift != 'Shift-II' && $this->post_shift!='Both') {
                 throw new Exception('Shift Shoulde be either 1 or 2');
             }
-            $qry = "UPDATE {$this->table} SET `post`=?,`description`=?,`post_shift`=? where post_id=?";
+            if ($this->who_can_vote != 'M' && $this->who_can_vote != 'F' && $this->who_can_vote!='MF') {
+                throw new Exception('who can vote should be MF,M or F');
+            }
+            $qry = "UPDATE {$this->table} SET `post`=?,`description`=?,`post_shift`=?,`who_can_vote`=? where post_id=?";
             $qry_prepare = $this->conn->prepare($qry);
-            $qry_prepare->bind_param("sssi", $this->post, $this->description, $this->shift, $id);
+            $qry_prepare->bind_param("ssssi", $this->post, $this->description, $this->post_shift,$this->who_can_vote ,$id);
             $qry_prepare->execute();
             return $this->conn->affected_rows;
         } catch (Exception $e) {

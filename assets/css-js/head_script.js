@@ -16,6 +16,17 @@ function modal_show(id, message = '') {
         modal.show();
     })
 }
+function confirm_modal_show(id, btn_value='',message='') {
+    document.addEventListener("DOMContentLoaded", () => {
+        const bs_modal = document.querySelector(id);
+        if (message)
+            document.querySelector(id + " " + "#message").innerHTML = message;
+        if (btn_value)
+            document.querySelector(id + " " + "#btn_value").value = btn_value;
+        modal = new bootstrap.Modal(bs_modal);
+        modal.show();
+    })
+}
 function modal_hide(id) {
     document.addEventListener("DOMContentLoaded", () => {
         const bs_modal = document.querySelector(id);

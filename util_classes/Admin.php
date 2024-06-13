@@ -5,6 +5,7 @@
     {
         private $conn;
         private $table='admin';
+        private $old_table='old_data_table';
         public $username='';
         public $password='';
         public $email='';
@@ -12,6 +13,20 @@
         public function __construct($conn)
         {
             $this->conn=$conn;
+        }
+
+        public function migrate_table()
+        {
+            try{
+            $qry="INSERT INTO {$this->old_table}(`regno`,`post_with_shift`,`votes`,`election_year`) SELECT c.regno,CONCAT(p.post,' ',p.post_shift),v.vote,c.election_year from candidates as c inner join position as p on p.post_id=c.post_id left join votes as v on c.candidate_id=v.candidate_id";
+            $qry_prepare=$this->conn->prepare($qry);
+            return $qry_prepare->execute();
+            }
+            catch(Exception $e)
+            {
+                $this->error=$e;
+                return null;
+            }
         }
         public function validate_admin($username,$password)
         {
@@ -35,6 +50,24 @@
                 return null;
             }
 
+        }
+        public function delete_table_contents($table_name)
+        {
+            try
+            {
+            if($table_name=='admin')
+                throw new Exception('Access Denied to Delete Admin Table Contents');
+            $qry="DELETE FROM {$table_name}";
+            $qry_prepare=$this->conn->prepare($qry);
+            return $qry_prepare->execute();
+            }
+            catch(Exception $e)
+            {
+                echo $e->getMessage();
+                $this->error=$e;
+                return null;
+            }
+            
         }
         public function change_admin_password($new_pass,$username)
         {
@@ -73,5 +106,6 @@
 
     }
     $admin=new Admin($conn);
+    $admin->migrate_table();
     // $admin->change_admin_password('1234565','muthuabi');
 ?>

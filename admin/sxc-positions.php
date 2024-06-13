@@ -22,34 +22,18 @@
         include_once("includes/response_modal.php");
       
         ?>
-        <div class='alert alert-warning alert-dismissible fade show d-none ' role='alert'>
+        <div class='alert alert-warning alert-dismissible fade show d-none' role='alert'>
             <buton type='button'  class="btn-close" data-bs-dismiss='alert'></buton>
 
         <?php
         if (isset($_POST['add_position'])) {
             try {
                 $add_position=new Position($conn);
-                $add_candidate->regno = $_POST['regno'];
-                $add_candidate->name = $_POST['name'];
-                $add_candidate->shift = $_POST['shift'];
-                $add_candidate->post_id = $_POST['post_id'];
-                $add_candidate->year = $_POST['year'];
-                $add_candidate->course = $_POST['course'];
-                $add_candidate->election_year=$_POST['election_year'];
-                if (isset($_FILES['image_url'])) {
-                    $types = ['image/jpeg', 'image/png', 'image/jpg'];
-                    if (!in_array($_FILES['image_url']['type'], $types))
-                        throw new Exception('File Should be Png,Jpg or Jpeg');
-                    if ($_FILES['image_url']['size'] > (1024 * 1024))
-                        throw new Exception('File Size should be less than 1mb');
-                    if ($add_candidate->fileUpload($_FILES['image_url'])) {
-                        echo "File Upload Sucess" . $add_candidate->image_url;
-                    } else
-                        throw new Exception('File Upload Failed');
-                } else {
-                    throw new Exception('No File Uploaded');
-                }
-                if ($add_candidate->insert())
+                $add_position->post=$_POST['post'];
+                $add_position->post_shift=$_POST['post_shift'];
+                $add_position->description=$_POST['description'];
+                $add_position->who_can_vote=$_POST['who_can_vote'];
+                if ($add_position->insert())
                     echo "<script>modal_show('#responsemodal','Registered Successfully!');</script>";
                 else {
                     throw new Exception('Register Error! Some Error Occured');
@@ -61,33 +45,16 @@
         }
         if (isset($_POST['edit_position'])) {
             try {
-                $edit_candidate = new Candidate($conn);
-                $edit_candidate->regno = $_POST['regno'];
-                $edit_candidate->name = $_POST['name'];
-                $edit_candidate->shift = $_POST['shift'];
-                $edit_candidate->post_id = $_POST['post_id'];
-                $edit_candidate->year = $_POST['year'];
-                $edit_candidate->course = $_POST['course'];
-                $edit_candidate->election_year=$_POST['election_year'];
-                $edit_candidate->candidate_id = $_POST['candidate_id'];
-                if (isset($_FILES['image_url']) && !$_FILES['image_url']['error']) {
-                    $types = ['image/jpeg', 'image/png', 'image/jpg'];
-                    if (!in_array($_FILES['image_url']['type'], $types))
-                        throw new Exception('File Should be Png,Jpg or Jpeg');
-                    if ($_FILES['image_url']['size'] > (1024 * 1024))
-                        throw new Exception('File Size should be less than 1mb');
-                    if ($edit_candidate->fileUpdate($_FILES['image_url'])) {
-                        echo "File Upload Success";
-                    } else
-                        throw new Exception('File Upload Failed');
-                } else {
-                    //throw new Exception('No File Uploaded');
-                    if(isset($_POST['image_update_url']))
-                    $edit_candidate->image_url=$_POST['image_update_url'];
-                }
-                if ($edit_candidate->update($_POST['candidate_id']))
+                $edit_position = new Position($conn);
+                $edit_position->post=$_POST['post'];
+                $edit_position->post_shift=$_POST['post_shift'];
+                $edit_position->description=$_POST['description'];
+                $edit_position->who_can_vote=$_POST['who_can_vote'];
+                // $edit_candidate->post_id = $_POST['post_id'];
+                if ($edit_position->update($_POST['post_id']))
                     echo "<script>modal_show('#responsemodal','Updated Successfully!');</script>";
-                else {
+                else 
+                {
                     if($edit_candidate->error)
                         throw new Exception('Update Error! Some Error Occured');
                     echo "<script>modal_show('#responsemodal','Updated with no changes Successfully!');</script>";
@@ -98,7 +65,7 @@
         }
         if (isset($_POST['delete']) && trim($_POST['delete'])) {
             try {
-                if ($can->deleteOne($_POST['delete']))
+                if ($pos->deleteOne($_POST['delete']))
                     echo "<script>modal_show('#responsemodal','Deleted Successfully!');</script>";
                 else
                     throw new Exception('Deletion Unsuccessful');
@@ -107,9 +74,7 @@
             }
         }
         if (isset($_POST['edit']) && trim($_POST['edit'])) {
-
-
-            if ($value = $can->readOne($_POST['edit'])) {
+            if ($value = $pos->readOne($_POST['edit'])) {
                 echo "<script>modal_show('#candidate');</script>";
             }
         }
@@ -130,27 +95,29 @@
        
                             <div class="form-group">
                                 <label for="post">
-                                    Register Number
+                                    Post Name
                                 </label>
                                 <input type="text" name='post' value="<?php if (isset($value)) echo $value['post']; ?>" required id='post' class="form-control">
                                 <?php if (isset($value)) echo "<input type='hidden' name='post_id' value='{$value['post_id']} ' />" ?>
                             </div>
-
-                            
                             <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" name='name' id='name' value="<?php if (isset($value)) echo $value['name']; ?>" required class='form-control'>
+                                <label for="description">Description</label>
+                                <textarea  name='description' id='description' required class="form-control"><?php if (isset($value)) echo $value['description']; ?></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="description">Course</label>
-                                <texarea type="text" name='description' id='description' required class="form-control"><?php if (isset($value)) echo $value['description']; ?></texarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="shift">Shift</label>
+                                <label for="post_shift">Shift</label>
                                 <select name='post_shift' id='post_shift' class='form-control'>
-                                    <option value='Both' <?php if (isset($value) && ($value['post_shift'] == 'Both')) echo 'selected'; ?>>Shift - I</option>
+                                    <option value='Both' <?php if (isset($value) && ($value['post_shift'] == 'Both')) echo 'selected'; ?>>Both Shifts</option>
                                     <option value='Shift-I' <?php if (isset($value) && ($value['post_shift'] == 'Shift-I')) echo 'selected'; ?>>Shift - I</option>
                                     <option value='Shift-II' <?php if (isset($value) && ($value['post_shift'] == 'Shift-II')) echo 'selected'; ?>>Shift - II</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="who_can_vote">Shift</label>
+                                <select name='who_can_vote' id='who_can_vote' class='form-control'>
+                                    <option value='MF' <?php if (isset($value) && ($value['who_can_vote'] == 'MF')) echo 'selected'; ?>>Male & Female</option>
+                                    <option value='M' <?php if (isset($value) && ($value['who_can_vote'] == 'M')) echo 'selected'; ?>>Male</option>
+                                    <option value='F' <?php if (isset($value) && ($value['who_can_vote'] == 'F')) echo 'selected'; ?>>Female</option>
                                 </select>
                             </div>
                            
@@ -169,30 +136,28 @@
 
         </form>
 		<?php
-                $position = new CandidateAndPosition($conn);
-                $result = $candidateposition->readJoinAll();
+                $result = $pos->readAll();
                 if ($data = $result['data']) {
                    
               
        echo "<div class='table-responsive '>
-        <table class='table my-2 sxc-candidates'>
+        <table class='table my-2 sxc-positions sxc-candidates'>
             <thead>
                 <tr>
                     <th>Id</th>
                     <th>Position</th>
-                    <th>Name</th>
-                    <th>Reg No</th>
-                    <th>Post</th>
+                    <th>Description</th>
                     <th>Shift</th>
-                    <th>Course</th>
+                    <th>Who Can Vote</th>
+                   
              
                     <th colspan='2'>Actions</th>
                 </tr>
             </thead>
             <tbody>";
 			 for ($i = 0; $i < count($data); $i++) {
-                        echo "<tr><td>{$data[$i]['candidate_id']}</td><td style='text-align:center'><img src='{$data[$i]['image_url']}' class='can_small_img' /></td><td>{$data[$i]['name']}</td><td>{$data[$i]['regno']}</td><td>{$data[$i]['post']}</td><td>{$data[$i]['shift']}</td><td>{$data[$i]['course']}</td>
-                <td><button class='btn btn-warning' type='submit' name='edit' value={$data[$i]['candidate_id']} form='form_temp'>Edit</button></td><td><button class='btn btn-danger' type='submit' name='delete' value={$data[$i]['candidate_id']} form='form_temp'>Delete</button></td></tr>";
+                        echo "<tr><td>{$data[$i]['post_id']}</td><td>{$data[$i]['post']}</td><td>{$data[$i]['description']}</td><td>{$data[$i]['post_shift']}</td><td>{$data[$i]['who_can_vote']}</td>
+                <td><button class='btn btn-warning' type='submit' name='edit' value={$data[$i]['post_id']} form='form_temp'>Edit</button></td><td><button class='btn btn-danger' type='submit' name='delete' value={$data[$i]['post_id']} form='form_temp'>Delete</button></td></tr>";
                     }
                 
             echo "</tbody>
