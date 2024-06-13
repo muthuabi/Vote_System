@@ -18,7 +18,12 @@
         <?php include_once('includes/navbar.php') ?>
     </header>
     <main class="content-wrapper">
-        <h3 class='text-center fw-bold' style='color:gray'>SXC Vote Ballot</h3>
+        <div id="ballot_head">
+            <b>Student Council Election (2024-25) </b>
+            <div>
+                <strong id="live-blink"></strong><strong id="live">live</strong>
+            </div>
+        </div>
         <table class="table">
             <thead>
             
@@ -33,6 +38,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", (main) => {
         const table_ballot_all = document.getElementById("ballot_all");
+      
         function fetch_ballot() {
             $.ajax({
                 url: '../util_classes/Ballot.php?ballot=BALLOT_ALL',
@@ -41,7 +47,6 @@
             })
                 .done(function (data) {
                     const pos_arr=[];
-                
                     data.data.forEach(values => {
                         values.vote = (values.vote ? values.vote : 0);
                         if (document.querySelector(`#can${values.candidate_id}`)) {
@@ -57,7 +62,7 @@
                                 pos_arr.push(values.post_id);
                             }
                             table_ballot_all.innerHTML += `
-            <tr class='' id=${'can' + values.candidate_id}><td id='candidate_id' >${values.candidate_id}</td><td id='candidate_name' style='text-transform:uppercase'>${values.name}</td><td id='regno'>${values.regno}</td><td><b id='vote'>${values.vote}</b>  <span id='vote_status'>${(data.max_post_data[values.post_id].max_candidate_id==values.candidate_id)?'&uarr;':'&darr;'}</span></td></tr>
+            <tr class='' id=${'can' + values.candidate_id}><td id='candidate_id' >${values.candidate_id}</td><td id='candidate_name' style='text-transform:uppercase'>${values.name}</td><td id='regno'>${values.regno}</td><td id='vote_data'><b id='vote'>${values.vote}</b>  <span id='vote_status'${(data.max_post_data[values.post_id].max_candidate_id==values.candidate_id)?' class=up_vote >&uarr;':' class=down_vote>&darr;'}</span></td></tr>
          
             `;
                         }

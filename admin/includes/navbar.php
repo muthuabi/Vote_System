@@ -102,13 +102,16 @@ if(isset($_POST['change_pass']))
             <div>
             <b class="d-none d-md-block d-lg-block">St. Xavier's College (Autonomous), Palayamkottai - 627002</b>
             <b class='d-block d-md-none d-lg-none'>SXC</b>
-            <small class="d-none d-md-block d-lg-block">Student Council Election (2024-25)</small>
-            <small class='d-block d-md-none d-lg-none'>2024-25</small>
+            <!-- <small class="d-none d-md-block d-lg-block">Student Council Election (2024-25)</small>
+            <small class='d-block d-md-none d-lg-none'>2024-25</small> -->
             </div>
         </div>
         <div class="profile-card">
             <img src="../assets/images/other_images/bg1.jpg" class="icon">
-            <span class="d-none d-md-block d-lg-block"><?php echo $_SESSION['admin_name']; ?></span>
+            <div>
+                <span class="d-none d-md-block d-lg-block"><?php echo $_SESSION['admin_name']; ?></span>
+                <span id='on_off' style='display:flex;align-items:center;gap:0.5rem;'><small style='background-color:green;border-radius:50%;width:10px;height:10px;'></small><small class="d-none d-md-block d-lg-block">Online</small></span>
+            </div>
             <form method="post">
                 <button class="btn btn-dark" type='submit' name='admin_logout'>SignOut</button>
                 <button class="btn btn-dark" type='submit' name='admin_change_pass'>&#9881;</button>
@@ -123,18 +126,8 @@ if(isset($_POST['change_pass']))
         </button>
     </div>
     <div class="offcanvas-body ">
+       
         <div class="sidebar-card">
-            <h3 class="sidebar-sub-head">Profile</h3>
-            <div class="sidebar-inner-card">
-                <img src="../assets/images/other_images/bg1.jpg" class="icon">
-                <div class="sidebar-profile-card">
-                    <span><?php echo $_SESSION['admin_name']?></span>
-                    <span id='on_off' style='display:flex;align-items:center;gap:0.5rem;'><small style='background-color:green;border-radius:50%;width:10px;height:10px;'></small><small>Online</small></span>
-                </div>
-            </div>
-        </div>
-        <div class="sidebar-card">
-            <h3 class="sidebar-sub-head">Links</h3>
             <ul class="nav navbar-nav">
                 <li class="nav-item"><a href="dashboard.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='dashboard.php')  echo 'nav-active'  ?>">Dashboard</a></li>
                 <li class="nav-item"><a href="sxc-candidates.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='sxc-candidates.php')  echo 'nav-active'  ?>">Candidates</a></li>
