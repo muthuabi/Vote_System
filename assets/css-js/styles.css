@@ -91,16 +91,16 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap:0.5rem;
         background-color: #f1cf9054;
-        padding:5rem;
+        padding:3rem 1rem;
         border-radius: 7px;
         margin: 1.5rem;
         animation: anime-pull-up 1s ease-in-out;
         background-repeat: no-repeat;
         background-size: contain;
         background-position:center;
-        width: fit-content;
+        word-wrap: break-word;
+        max-width: 100%;
       
     }
     .home-box .head-name
@@ -295,11 +295,41 @@ form.login_form
     flex-direction: column;
     gap:1rem;
     width:40%;
-    padding:1.2rem 1rem;
-    box-shadow: 0px 0px 8px 2px rgb(175, 173, 173);
-    border-radius: 5px;
+    padding:1.2rem 1.2rem;
+    border-radius: 7px;
+    background-color: #e6c589b4;
+    animation: anime-pull-up 0.5s ease-in;
+}
+form.login_form .input-group
+{
+  border-radius: 15px;
+  overflow: hidden;
+  height: 2.7rem;
 }
 
+form.login_form .form-group
+{
+  gap:0.5rem;
+}
+form.login_form label
+{
+  text-transform: uppercase;
+}
+.form-control
+{
+background-color:#fcf3e793;
+}
+form.login_form.criteria_form .form-control
+{
+  border-radius: 15px;
+  overflow: hidden;
+  height: 2.7rem;
+}
+.svg-icon
+{
+  width:25px;
+  height:25px;
+}
 .opacity-hover
 {
     opacity: 0%;
@@ -535,8 +565,8 @@ footer
 
 #ballot_all tr td:not(#vote_data)
 {
-  font-weight: bold;
-  color:gray;
+  font-weight: bolder;
+  
 }
 #ballot_all #vote_data
 {
@@ -582,6 +612,10 @@ footer
   background-color: red;
   animation: anime-blink 1s infinite ease-in-out;
 }
+/* #vote_status
+{
+  max-height: 0.5rem;
+} */
 #vote_status,#vote
 {
   font-size: 120%;
@@ -660,6 +694,7 @@ footer
         {
             font-size:larger;
         }
+    
         .icon
         {
             width:50px;
@@ -770,6 +805,10 @@ footer
       .individual-card-container .individual-card .card-text
       {
         font-size: 35px;
+      }
+      footer
+      {
+        height: 100%;
       }
     
       

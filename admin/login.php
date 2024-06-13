@@ -37,17 +37,17 @@
                     <label for="username">Username</label>
                     <div class="input-group">
                         <input type="text" name="username" required id="username" class="form-control">
-                        <span class="input-group-text">&#x1F464;</span>
+                        <span class="input-group-text"><img src="../assets/icons/user-icon.svg" class="svg-icon" /></span>
                     </div>
                 </div>
                 <div class="form-group ">
                     <label for="password">Password</label>
                     <div class="input-group">
                         <input type="password" required name="password" id="password" class="form-control">
-                        <span class="input-group-text">&#128274;</span>
+                        <span class="input-group-text"><img src="../assets/icons/password-lock.svg" class="svg-icon" /></span>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-dark my-2 w-100" id="admin_login_btn" name="admin_login">Login</button>
+                <button type="submit" class="btn btn-dark my-2 w-100 vote_btn" id="admin_login_btn" name="admin_login">Login</button>
                 <?php
                       if(isset($_POST['admin_login']))
                       {

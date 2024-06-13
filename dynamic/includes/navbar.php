@@ -112,9 +112,8 @@ if(isset($_POST['change_pass']))
                 <span class="d-none d-md-block d-lg-block"><?php echo $_SESSION['admin_name']; ?></span>
                 <span id='on_off' style='display:flex;align-items:center;gap:0.5rem;'><small style='background-color:green;border-radius:50%;width:10px;height:10px;'></small><small class="d-none d-md-block d-lg-block">Online</small></span>
             </div>
-            <form method="post">
+            <form method="post" id="change_pass_temp_form">
                 <button class="btn btn-dark" type='submit' name='admin_logout'>SignOut</button>
-                <button class="btn btn-dark" type='submit' name='admin_change_pass'>&#9881;</button>
             </form>
         </div>
     </div>
@@ -133,7 +132,8 @@ if(isset($_POST['change_pass']))
                 <li class="nav-item"><a href="dashboard.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='dashboard.php')  echo 'nav-active'  ?>">Dashboard</a></li>
                 <?php if(str_contains($_SERVER['REQUEST_URI'],'individual-post.php'))  echo "<li class='nav-item'><a href='#' class='nav-link nav-active'>Candidates</a></li>";?>
                 <li class="nav-item"><a href="dyn_ballot.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='dyn_ballot.php')  echo 'nav-active'  ?>">Ballot Table</a></li>
-                <!-- <li class="nav-item"><a href="" class="nav-link">Contact</a></li> -->
+                <li class="nav-item"><button   type='submit' name="admin_change_pass" style="width:100%;text-align:left" class="btn btn-link  nav-link <?php if(isset($_POST['admin_change_pass'])) echo 'nav-active'; ?> " form="change_pass_temp_form" >Change Password</button> </li>
+            
             </ul>
 
         </div>

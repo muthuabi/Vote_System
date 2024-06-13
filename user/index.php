@@ -35,8 +35,8 @@
                 } 
         ?>
         <div class="form-container">
-            <form action="" method="post" id="user_login" class="login_form">
-                <h2 class="text-center">Vote Criteria Selection</h2>
+            <form action="" method="post" id="user_login" class="login_form criteria_form">
+                <h2 class="text-center">Criteria Selection</h2>
                 <div class="form-group">
                     <label for="username">Shift</label>
                     <select name="shift" id="shift" class='form-control'>
@@ -51,7 +51,7 @@
                         <option value="F">Female</option>
                     </select> 
                 </div>
-                <button type="submit" class="btn btn-dark my-2 w-100" id="user_login_btn" name="user_login">Select</button>
+                <button type="submit" class="btn btn-dark my-2 vote_btn w-100" id="user_login_btn" name="user_login">Select</button>
             </form>
         </div>
         <?php 

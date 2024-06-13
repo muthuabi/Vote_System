@@ -1,5 +1,25 @@
+const maincanvas=document.getElementById("maincanvas");
+window.addEventListener("resize",(e)=>{
+    if(maincanvas)
+    {
+       if(window.innerWidth>=768)
+       {
+           //maincanvas.style.transform='translateX(0)';
+           maincanvas.style.visibility='visible';
+           document.querySelectorAll('.modal-backdrop').forEach(element=>{
+            element.style.display='none';
+           })   
+        //    maincanvas.setAttribute('visibility','visible');
+       }
+       else
+       { 
+           maincanvas.style.visibility='hidden';
+       }
+    }
+       
+})
 document.addEventListener("DOMContentLoaded",(event)=>{
-    const maincanvas=document.getElementById("maincanvas");
+
     const on_off=document.getElementById('on_off');
     const liveblink=document.getElementById('live-blink');
     const votestatus=document.getElementById('vote_status');
@@ -24,20 +44,6 @@ document.addEventListener("DOMContentLoaded",(event)=>{
 		// votestatus.getAnimations()[0].pause();
         init_toast('You are Offline');
 	})
-    window.addEventListener("resize",(e)=>{
-        if(maincanvas)
-        {
-        if(window.innerWidth>=768)
-        {
-            //maincanvas.style.transform='translateX(0)';
-            maincanvas.style.visibility='visible';
-        }
-        else
-        { 
-            maincanvas.style.visibility='hidden';
-        }
-    }
-        
-    })
+    
 })
 window.history.replaceState(null,null,window.location.href);
