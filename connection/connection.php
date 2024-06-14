@@ -4,7 +4,7 @@ class Connection
     private $db_host='localhost';
     private $db_user='root';
     private $db_password='';
-    private $db_dbase='sxc_election_2024';
+    private $db_dbase='sxc_election';
     protected $conn;
     public function __construct()
     {

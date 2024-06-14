@@ -21,14 +21,33 @@ window.addEventListener("resize",(e)=>{
 document.addEventListener("DOMContentLoaded",(event)=>{
     const date=new Date();
     const academic_year=date.getFullYear()+'-'+((date.getFullYear()+1)%100);
-   
+    const sxc_footer_head=`Designed & Maintained by SXC ERP and Web Team | © 2024 St. Xavier's College. All rights reserved`;
+    const sxc_heading='Students Council Election '+academic_year;
     const on_off=document.getElementById('on_off');
     const liveblink=document.getElementById('live-blink');
     const votestatus=document.getElementById('vote_status');
     const footerhead=document.querySelector('.footer-head b');
-    footerhead.innerHTML="Designed & Maintained by SXC ERP and Web Team | © 2024 St. Xavier's College. All rights reserved";
-	document.querySelector('.sxc-council-header h5 ').innerHTML='Students Council Election '+academic_year;
-    document.querySelector('#ballot-head b').innerHTML='Students Council Election '+academic_year; 
+    const sxcheader=document.querySelector('.sxc-council-header h5 ');
+    const ballothead=document.querySelector('#ballot_head b');
+    const tab_title=document.querySelector('head title');
+    let tab_icon=document.querySelector(`link[rel="shortcut icon"]`);
+    const head=document.querySelector('head');
+    if(!tab_icon)
+    {
+        if(head)
+        {
+           head.innerHTML+=`<link rel='shortcut icon' href='../assets/images/other_images/logo2.png' type='image/x-icon' /> `;
+        }
+    }
+    console.log(tab_title);
+    if(tab_title)
+        tab_title.innerHTML=sxc_heading;
+    if(footerhead)
+    footerhead.innerHTML=sxc_footer_head;
+	if(sxcheader)
+    sxcheader.innerHTML=sxc_heading;
+    if(ballothead)
+    ballothead.innerHTML=sxc_heading; 
     function init_toast(message = "", id = "my_toast_offline") {
     const toast = document.querySelector(`.toast#${id}`);
     if (message)

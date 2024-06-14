@@ -24,7 +24,11 @@
     
     ?>
             <div class="container py-3">
-          
+            <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+            <!-- <buton type='button'  class='btn-close' data-bs-dismiss='alert'> </buton> -->
+             Before deleting table data make sure that you have migrated the current data!
+             <br><a href="sxc-migrate.php">Migrate</a>
+            </div>
                 <?php 
                 try
                 {

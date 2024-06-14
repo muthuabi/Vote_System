@@ -18,7 +18,10 @@
           
         </style>
     <main class="content-wrapper">
-        <div class="container">
+        <div class="container py-2">
+        <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+           Table Migration is storing the current academic year data to a table with certain information so that, each academic year voters data and their position and votes will be saved and looked up when needed.
+        </div>
     <?php 
     include_once("includes/confirm_modal.php");
     include_once("../util_classes/Admin.php");
@@ -42,11 +45,11 @@
             echo "
             <div class='alert alert-warning alert-dismissible fade show' role='alert'>
             <buton type='button'  class='btn-close' data-bs-dismiss='alert'> </buton>
-        {$e->getMessage()}</div>";
+        {$e->getMessage()}!<br> Reason: The Migration may have already done!</div>";
         }
     }
     ?>
-    <form action='' method='post' style='height:70vh' class="d-flex w-100 justify-content-center align-items-center">
+    <form action='' method='post' style='height:40vh' class="d-flex w-100 justify-content-center align-items-center">
             <button type='submit' name='migrate' value='migrate' class="vote_btn btn btn-lg btn-primary">Migrate</button>
     </form>
 

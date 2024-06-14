@@ -22,6 +22,7 @@
         include_once("../util_classes/Can_Pos_Join.php");
         include_once("includes/response_modal.php");
         include_once("../util_classes/Vote.php");
+        $types = ['image/jpeg', 'image/png', 'image/jpg','image/webp','image/jfif'];
         ?>
         <div class='alert alert-warning alert-dismissible fade show d-none ' role='alert'>
             <buton type='button'  class="btn-close" data-bs-dismiss='alert'></buton>
@@ -38,7 +39,7 @@
                 $add_candidate->course = $_POST['course'];
                 $add_candidate->election_year=$_POST['election_year'];
                 if (isset($_FILES['image_url'])) {
-                    $types = ['image/jpeg', 'image/png', 'image/jpg'];
+                   
                     if (!in_array($_FILES['image_url']['type'], $types))
                         throw new Exception('File Should be Png,Jpg or Jpeg');
                     if ($_FILES['image_url']['size'] > (1024 * 1024))
@@ -72,7 +73,7 @@
                 $edit_candidate->election_year=$_POST['election_year'];
                 $edit_candidate->candidate_id = $_POST['candidate_id'];
                 if (isset($_FILES['image_url']) && !$_FILES['image_url']['error']) {
-                    $types = ['image/jpeg', 'image/png', 'image/jpg'];
+                   
                     if (!in_array($_FILES['image_url']['type'], $types))
                         throw new Exception('File Should be Png,Jpg or Jpeg');
                     if ($_FILES['image_url']['size'] > (1024 * 1024))

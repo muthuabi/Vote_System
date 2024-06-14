@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+  
+    <!-- <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
     <script src='../assets/bootstrap/js/jquery.min.js'></script>
     <script src='../assets/bootstrap/js/bootstrap.bundle.min.js'></script>
     <link rel="stylesheet" href="../assets/css-js/styles.css">
     <script src='../assets/css-js/script.js'></script>
-    <script src="../assets/css-js/head_script.js"></script>
+    <script src="../assets/css-js/head_script.js"></script> -->
 </head>
 
 <body>
@@ -55,7 +55,21 @@
                             // document.querySelector(`#can${values.candidate_id} #candidate_name`).innerHTML=values.name;
                             // document.querySelector(`#can${values.candidate_id} #post_name`).innerHTML=values.post;
                             document.querySelector(`#can${values.candidate_id} #vote`).innerHTML = values.vote;
-                            document.querySelector(`#can${values.candidate_id} #vote_status`).innerHTML = (data.max_post_data[values.post_id].max_candidate_id==values.candidate_id)?'<img src="../assets/icons/up-arrow.svg" class="svg-icon" />':'<img src="../assets/icons/down-arrow.svg" class="svg-icon" />';
+                            if(data.max_post_data[values.post_id].max_candidate_id==values.candidate_id)
+                            {
+                                document.querySelector(`#can${values.candidate_id} #vote_status`).innerHTML = '<img src="../assets/icons/up-arrow.svg" class="svg-icon" />';
+                                document.querySelector(`#can${values.candidate_id} #vote_status`).classList.add('up_vote');
+                                document.querySelector(`#can${values.candidate_id} #vote_status`).classList.remove('down_vote');
+
+                                
+                            }
+                            else
+                            {
+                                document.querySelector(`#can${values.candidate_id} #vote_status`).innerHTML = '<img src="../assets/icons/down-arrow.svg" class="svg-icon" />';
+                                document.querySelector(`#can${values.candidate_id} #vote_status`).classList.add('down_vote');
+                                document.querySelector(`#can${values.candidate_id} #vote_status`).classList.remove('up_vote');
+                            }
+                            
                         }
                         else {
                             if(!pos_arr.includes(values.post_id)){
@@ -73,6 +87,7 @@
                     console.error("Request failed:", textStatus, errorThrown);
                 })
         }
+        
         fetch_ballot();
         setInterval(() => { fetch_ballot() }, 3000);
     });

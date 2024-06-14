@@ -146,7 +146,7 @@
                                
                                 </div>
                                 <div class='modal-body d-flex flex-column align-items-center'>
-                                    <span id='icon' style='font-size:70px'>&#9432;</span>
+                                    <span id='icon' class='my-2'><img src='../assets/images/other_images/vote-success-2.gif' width='300px' height='220px' /></span>
                                     <table style='width:fit-content'>
                                         ";
                                   

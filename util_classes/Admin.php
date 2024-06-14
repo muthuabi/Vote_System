@@ -106,6 +106,6 @@
 
     }
     $admin=new Admin($conn);
-    $admin->migrate_table();
+    
     // $admin->change_admin_password('1234565','muthuabi');
 ?>
