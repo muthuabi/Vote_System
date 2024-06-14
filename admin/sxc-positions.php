@@ -102,7 +102,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="description">Description</label>
-                                <textarea  name='description' id='description' required class="form-control"><?php if (isset($value)) echo $value['description']; ?></textarea>
+                                <textarea  name='description' id='description' required class="form-control"><?php if (isset($value)) echo $value['description'];else echo 'Serves'; ?></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="post_shift">Shift</label>
@@ -141,7 +141,7 @@
                    
               
        echo "<div class='table-responsive '>
-        <table class='table my-2 sxc-positions sxc-candidates'>
+        <table class='table my-2 sxc-positions '>
             <thead>
                 <tr>
                     <th>Id</th>

@@ -42,7 +42,7 @@
 
             <b>Student Council Election (2024-25)</b>
             <div class="pr-not">
-                <strong id="live-blink"></strong><strong id="live">live</strong>
+                <strong id="live-blink"></strong><strong id="live"><img src="../assets/icons/live-icon.svg" width="40px" height="40px"/></strong>
             </div>
         </div>
         <table class="table">
@@ -97,7 +97,7 @@
                                 pos_arr.push(values.post_id);
                             }
                             table_ballot_all.innerHTML += `
-            <tr class='' id=${'can' + values.candidate_id}><td id='candidate_id' >${values.candidate_id}</td><td id='candidate_image'><img src='${values.image_url}' class='can_small_img'/></td><td id='candidate_name' style='text-transform:uppercase'>${values.name}</td><td id='regno'>${values.regno}</td><td id='vote_data'><b id='vote'>${values.vote}</b>  <span id='vote_status'${(data.max_post_data[values.post_id].max_candidate_id==values.candidate_id)?' class=up_vote ><img src="../assets/icons/up-arrow.svg" class="svg-icon" />':' class=down_vote><img src="../assets/icons/down-arrow.svg" class="svg-icon" />'}</span></td></tr>
+            <tr class='' id=${'can' + values.candidate_id}><td id='candidate_id' class='pr-not' >${values.candidate_id}</td><td id='candidate_image'><img src='${values.image_url}' class='can_small_img'/></td><td id='candidate_name' style='text-transform:uppercase'>${values.name}</td><td id='regno'>${values.regno}</td><td id='vote_data'><b id='vote'>${values.vote}</b>  <span id='vote_status'${(data.max_post_data[values.post_id].max_candidate_id==values.candidate_id)?' class=up_vote ><img src="../assets/icons/up-arrow.svg" class="svg-icon" />':' class=down_vote><img src="../assets/icons/down-arrow.svg" class="svg-icon" />'}</span></td></tr>
          
             `;
                         }

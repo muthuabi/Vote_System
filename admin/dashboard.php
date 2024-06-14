@@ -56,7 +56,7 @@
                             </div>
                             <div class='dash-data'>
                                 <b>Total Votes </b>
-                                <small id='total_votes'>${values.total_votes}</small>
+                                <small id='total_votes'>${values.total_votes==null?0:values.total_votes}</small>
                             </div>
                         </div>
                         <div>

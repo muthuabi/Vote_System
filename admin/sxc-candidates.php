@@ -154,7 +154,7 @@
                                 <input type="text" name='course' id='course' value="<?php if (isset($value)) echo $value['course']; ?>" required class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="shift">Shift</label>
+                                <label for="shift">Candidate's Shift</label>
                                 <select name='shift' id='shift' class='form-control'>
                                     <option value='Shift-I' <?php if (isset($value) && ($value['shift'] == 'Shift-I')) echo 'selected'; ?>>Shift - I</option>
                                     <option value='Shift-II' <?php if (isset($value) && ($value['shift'] == 'Shift-II')) echo 'selected'; ?>>Shift - II</option>
@@ -167,7 +167,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="election_year">Election Year</label>
-                                <input type="text" name='election_year' id='election_year' value="<?php if (isset($value)) echo $value['election_year']; ?>" required class="form-control">
+                                <input type="text" name='election_year' id='election_year' value="<?php if (isset($value)){ echo $value['election_year']; }else{ echo date('Y').'-'.(((int)date('y'))+1); }?>" required class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="post">Position</label>
@@ -217,13 +217,14 @@
                     <th>Post</th>
                     <th>Shift</th>
                     <th>Course</th>
+                    <th>Election Year</th>
              
                     <th colspan='2'>Actions</th>
                 </tr>
             </thead>
             <tbody>";
 			 for ($i = 0; $i < count($data); $i++) {
-                        echo "<tr><td>{$data[$i]['candidate_id']}</td><td style='text-align:center'><img src='{$data[$i]['image_url']}' class='can_small_img' /></td><td>{$data[$i]['name']}</td><td>{$data[$i]['regno']}</td><td>{$data[$i]['post']}</td><td>{$data[$i]['shift']}</td><td>{$data[$i]['course']}</td>
+                        echo "<tr><td>{$data[$i]['candidate_id']}</td><td style='text-align:center'><img src='{$data[$i]['image_url']}' class='can_small_img' /></td><td>{$data[$i]['name']}</td><td>{$data[$i]['regno']}</td><td>{$data[$i]['post']}</td><td>{$data[$i]['post_shift']}</td><td>{$data[$i]['course']} ({$data[$i]['shift']})</td><td>{$data[$i]['election_year']}</td>
                 <td><button class='btn btn-warning' type='submit' name='edit' value={$data[$i]['candidate_id']} form='form_temp'>Edit</button></td><td><button class='btn btn-danger' type='submit' name='delete' value={$data[$i]['candidate_id']} form='form_temp'>Delete</button></td></tr>";
                     }
                 

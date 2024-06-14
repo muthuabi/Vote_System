@@ -231,8 +231,9 @@ nav .btn.btn-dark
 
 }
 .content-wrapper {
-    margin-top: 5rem;
+    margin-top: 5.2rem;
     padding:0.5rem;
+    position: relative;
 }
 table.table.sxc-candidates
 {
@@ -648,7 +649,7 @@ footer
 @keyframes anime-up-vote 
 {
   0%{
-    transform: translateY(10px);
+    transform: translateY(7px);
   }
   50%
   {
@@ -656,13 +657,13 @@ footer
   }
   100%
   {
-    transform: translateY(-10px);
+    transform: translateY(-7px);
   }
 }
 @keyframes anime-down-vote 
 {
   0%{
-    transform: translateY(-10px);
+    transform: translateY(-7px);
   }
   50%
   {
@@ -670,7 +671,7 @@ footer
   }
   100%
   {
-    transform: translateY(10px);
+    transform: translateY(7px);
   }
 }
 /* #vote_data
@@ -681,6 +682,7 @@ footer
 {
   color:green;
   animation: anime-up-vote 1.5s linear infinite;
+  
   /* animation: anime-blink 2s linear infinite; */
 }
 #vote_status.down_vote
@@ -691,10 +693,15 @@ footer
 }
 #ballot_all tr:has(#vote_status[class='up_vote'])
 {
-  background-color: rgba(42, 148, 42, 0.39);
-  font-size: larger;
+  background-color: rgba(16, 182, 16, 0.185);
   font-family: Arial, Helvetica, sans-serif;
   color: rgb(71, 71, 71);
+  transition: all 0.5s;
+}
+#ballot_all tr:has(#vote_status[class='down_vote'])
+{
+  
+  font-weight:lighter;
 }
 #ballot_all tr:has(#vote_status[class='up_vote']) td:last-child::after
 {
@@ -741,6 +748,10 @@ footer
 .pr-only
 {
   display: none;
+}
+#print_btn
+{
+  position: relative;
 }
 @media screen and (min-width:768px) {
     .offcanvas {
@@ -896,20 +907,33 @@ footer
   {
     display: block;
   }
-  table br
+  /* table br
   {
     display: none;
-  }
+  } */
   #ballot_all tr:has(#vote_status[class='up_vote'])
   {
     font-size: inherit;
     font-family: inherit;
     color: inherit;
   }
-  table
+  #ballot_all tr:has(#vote_status[class='down_vote'])
+  {
+    display: none;
+  }
+  /* table
   {
     font-size: small;
-  }
+  } */
+   /* body
+   {
+    font-size: small;
+   } */
+   .sxc-header-icon-print
+   {
+    height: 100px;
+    width: 100px;
+   }
   header
   {
     display: none;
