@@ -4,7 +4,7 @@
 php_value memory_limit 256M
 
 # PHP Maximum Execution Time
-php_value max_execution_time 1000
+php_value max_execution_time 300
 
 # PHP Maximum Input Time
 php_value max_input_time 300
