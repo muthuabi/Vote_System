@@ -91,7 +91,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        background-color: #f1cf9054;
+        background-color: white;
         padding:3rem 1rem;
         border-radius: 7px;
         margin: 1.5rem;
@@ -452,9 +452,10 @@ form.login_form.criteria_form .form-control
   }
   .result-modal .modal-header
   {
-    padding:1.5rem 1rem;
+    padding:1rem 1rem;
     font-style: italic;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
@@ -733,8 +734,8 @@ footer
 }
 
 .sxc-header-icon-print {
-  width: 120px;
-  height: 120px;
+  width: 200px;
+  height: 250px;
 }
 .sxc-header-body
 {
@@ -753,7 +754,7 @@ footer
 {
   position: relative;
 }
-#dyn_ballot td,#dyn_ballot thead th
+#dyn_ballot td,#dyn_ballot  th
 {
     text-align: left;
     border-bottom: none;

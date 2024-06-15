@@ -25,11 +25,12 @@
     </header>
     <main id="home">
         <div class="home-box">
-            <h1 class="head-name head-role">St Xavier's College (Autonomous)</h1>
-            <p class="lead text-center">
-                Welcome to the SXC Vote System!
-            </p>
+            <h2 class="head-name head-role">Welcome to SXC Vote System!</h2>
+           
+            <div class="d-flex flex-column align-items-center">
+                <img src="./assets/images/other_images/vote-success-ballot.gif" style="width:120px;height:120px">
             <a href="user/" class="btn btn-lg btn-dark vote_btn px-5">Go to Vote</a>
+            </div>
             <a href="admin/login.php" class="btn btn-dark opacity-hover" style='position:fixed;bottom:0.5rem'>Admin</a>
         </div>
     </main>

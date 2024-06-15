@@ -23,7 +23,7 @@
     <main class="content-wrapper">
         <div class="sxc-header-print pr-only">
             <div>
-                <img src="../assets/images/other_images/logo2.png" class="sxc-header-icon-print">
+                <img src="../assets/images/other_images/print-logo.png" class="sxc-header-icon-print">
             </div>
             <div class="sxc-header-body">
                 <h3>St. Xavier's College (Autonomous)</h3>
@@ -42,7 +42,7 @@
 
             <b>Student Council Election (2024-25)</b>
             <div class="pr-not">
-                <strong id="live-blink"></strong><strong id="live"><img src="../assets/icons/live-icon.svg" width="40px" height="40px"/></strong>
+                <strong id="live-blink"></strong><strong id="live"><img src="../assets/icons/live-icon.svg" width="20px" height="20px"/>LIVE</strong>
             </div>
         </div>
   
@@ -98,18 +98,22 @@
                         else {
                             if(!pos_arr.includes(values.post_id)){
                                 if(!document.querySelector(`#post${values.post_id}`))
-                                table_ballot_all.innerHTML+=`<br><tr class='common_post' id='post${values.post_id}'><th id='common_post' style='text-align:left;text-transform:uppercase' colspan='4'>${values.post} ${(values.post_shift=='Both')?'':'('+values.post_shift+')'}</th><th id='common_post_vote'></th></tr>`;
+                                table_ballot_all.innerHTML+=`<br><tr class='common_post' id='post${values.post_id}'><th id='common_post' style='text-align:left;text-transform:uppercase' colspan='3'>${values.post} ${(values.post_shift=='Both')?'':'('+values.post_shift+')'}</th><th id='common_post_vote'></th></tr>
+                                <tr><th>PHOTO</th><th>NAME</th><th>REGNO</th><th>VOTES</th></tr>
+                                `;
                                 pos_arr.push(values.post_id);
                             }
         
                             table_ballot_all.innerHTML += `
-            <tr class='' id=${'can' + values.candidate_id}><td id='candidate_id' class='pr-not' >${values.candidate_id}</td><td id='candidate_image'><img src='${values.image_url}' class='can_small_img'/></td><td id='candidate_name' style='text-transform:uppercase'>${values.name}</td><td id='regno'>${values.regno}</td><td id='vote_data'><b id='vote'>${values.vote}</b>  <span id='vote_status'${(data.max_post_data[values.post_id] && (data.max_post_data[values.post_id].max_candidate_id==values.candidate_id))?' class=up_vote ><img src="../assets/icons/up-arrow.svg" class="svg-icon" />':' class=down_vote><img src="../assets/icons/down-arrow.svg" class="svg-icon" />'}</span></td></tr>
+            <tr class='' id=${'can' + values.candidate_id}><td id='candidate_image'><img src='${values.image_url}' class='can_small_img'/></td><td id='candidate_name' style='text-transform:uppercase'>${values.name}</td><td id='regno'>${values.regno}</td><td id='vote_data'><b id='vote'>${values.vote}</b>  <span id='vote_status'${(data.max_post_data[values.post_id] && (data.max_post_data[values.post_id].max_candidate_id==values.candidate_id))?' class=up_vote ><img src="../assets/icons/up-arrow.svg" class="svg-icon" />':' class=down_vote><img src="../assets/icons/down-arrow.svg" class="svg-icon" />'}</span></td></tr>
          
             `;
                         }
                     })
                 })
                 .fail(function (jqXHR, textStatus, errorThrown) {
+                    const offline=new Event('offline');
+                    window.dispatchEvent(offline);
                     console.error("Request failed:", textStatus, errorThrown);
                 })
         }

@@ -74,13 +74,13 @@ document.addEventListener("DOMContentLoaded",(event)=>{
         on_off.innerHTML=`<small style='background-color:green;border-radius:50%;width:15px;height:15px;'></small><small>Online</small>`;
         liveblink.getAnimations()[0].play();
         // votestatus.getAnimations()[0].play();
-		init_toast('You are Back Online');
+		init_toast('Connection Back Online');
 	})
     window.addEventListener("offline",(e)=>{
         on_off.innerHTML=`<small style='background-color:red;border-radius:50%;width:15px;height:15px;'></small><small>Offline</small>`;
 		liveblink.getAnimations()[0].pause();
 		// votestatus.getAnimations()[0].pause();
-        init_toast('You are Offline');
+        init_toast('Connection Offline');
 	})
     
 })

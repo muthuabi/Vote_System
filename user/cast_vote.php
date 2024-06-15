@@ -141,12 +141,13 @@
                     echo "<div class='modal fade result-modal' style='display:block;z-index:10000;opacity:100%'  data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1' aria-labelledby='responsemodalLabel' aria-hidden='true'>
                             <div class='modal-dialog modal-dialog-centered '>
                             <div class='modal-content'>
-                                <div class='modal-header'>
+                                <div class='modal-header mt-2'>
+                                <h3 >SXC Vote System</h3>
                                 <h3 class='modal-title'>Thank You for Voting!</h3>
                                
                                 </div>
                                 <div class='modal-body d-flex flex-column align-items-center'>
-                                    <span id='icon' class='my-2'><img src='../assets/images/other_images/vote-success-2.gif' width='300px' height='220px' /></span>
+                                    <span id='icon' class='my-2'><img src='../assets/images/other_images/vote-success-ballot.gif' width='250px' height='150px' /></span>
                                     <table style='width:fit-content'>
                                         ";
                                   
@@ -159,13 +160,13 @@
                                     
                                 </div>
                                 <div class='modal-footer d-flex justify-content-center'>
-                                    <b>SXC VOTE SYSTEM</b>
+                               
                                 </div>
                             </div>
                             </div>
                         </div><br>";
                     session_destroy();
-                    header("Refresh:3");
+                    header("Refresh:5");
                 }
             } catch (Exception $e) {
                 die("<center><b>{$e->getMessage()}</b><br>
