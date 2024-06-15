@@ -1,4 +1,4 @@
-const maincanvas=document.getElementById("maincanvas");
+const maincanvas=document.querySelector("#maincanvas");
 window.addEventListener("resize",(e)=>{
     if(maincanvas)
     {
@@ -71,14 +71,18 @@ document.addEventListener("DOMContentLoaded",(event)=>{
     toaster.show();
   }
     window.addEventListener("online",(e)=>{
+        if(on_off)
         on_off.innerHTML=`<small style='background-color:green;border-radius:50%;width:15px;height:15px;'></small><small>Online</small>`;
+        if(liveblink)
         liveblink.getAnimations()[0].play();
         // votestatus.getAnimations()[0].play();
 		init_toast('Connection Back Online');
 	})
     window.addEventListener("offline",(e)=>{
+        if(on_off)
         on_off.innerHTML=`<small style='background-color:red;border-radius:50%;width:15px;height:15px;'></small><small>Offline</small>`;
-		liveblink.getAnimations()[0].pause();
+		if(liveblink)
+        liveblink.getAnimations()[0].pause();
 		// votestatus.getAnimations()[0].pause();
         init_toast('Connection Offline');
 	})

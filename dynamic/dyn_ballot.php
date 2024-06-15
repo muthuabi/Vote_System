@@ -59,6 +59,7 @@
     </main>
 </body>
 <script>
+    let flag='initial';
     document.addEventListener("DOMContentLoaded", (main) => {
         const table_ballot_all = document.getElementById("ballot_all");
         function fetch_ballot() {
@@ -68,9 +69,16 @@
                 dataType: 'json'
             })
                 .done(function (data) {
+                    if(flag=='failed')
+                    {
+                    const on_event=new Event('online');
+                    window.dispatchEvent(on_event);
+                    flag='initial';
+                    }
                     const pos_arr=[];
                     let total_votes=0;
                     data.data.forEach(values => {
+                      
                         total_votes+=values.vote;
                         values.vote = (values.vote ? values.vote : 0);
                         document.querySelector('#total_votes_polled').innerHTML=total_votes;
@@ -112,6 +120,7 @@
                     })
                 })
                 .fail(function (jqXHR, textStatus, errorThrown) {
+                    flag='failed';
                     const offline=new Event('offline');
                     window.dispatchEvent(offline);
                     console.error("Request failed:", textStatus, errorThrown);

@@ -242,8 +242,8 @@ table.table.sxc-candidates
 }
 table .can_small_img
 {
-    width:30px;
-    height: 30px;
+    width:35px;
+    height:35px;
 }
 table th
 {
@@ -650,7 +650,7 @@ footer
 @keyframes anime-up-vote 
 {
   0%{
-    transform: translateY(7px);
+    transform: translateY(5px);
   }
   50%
   {
@@ -658,13 +658,13 @@ footer
   }
   100%
   {
-    transform: translateY(-7px);
+    transform: translateY(-5px);
   }
 }
 @keyframes anime-down-vote 
 {
   0%{
-    transform: translateY(-7px);
+    transform: translateY(-5px);
   }
   50%
   {
@@ -672,7 +672,7 @@ footer
   }
   100%
   {
-    transform: translateY(7px);
+    transform: translateY(5px);
   }
 }
 /* #vote_data
@@ -706,7 +706,7 @@ footer
 }
 #ballot_all tr:has(#vote_status[class='up_vote']) td:last-child::after
 {
-  content:'Won';
+  /* content:'Won'; */
   display: none;
 }
 .profile-card
@@ -734,8 +734,9 @@ footer
 }
 
 .sxc-header-icon-print {
-  width: 200px;
-  height: 250px;
+  width: 300px;
+  height: 300px;
+  object-fit:contain;
 }
 .sxc-header-body
 {
@@ -908,6 +909,11 @@ footer
     form.login_form
     {
         width:95%;
+    }
+    .candidates-container
+    {
+      display: flex;
+      flex-wrap: wrap;
     }
     
 }
