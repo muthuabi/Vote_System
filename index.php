@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SXC Vote System</title>
+    <title>Students Council Election</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css-js/styles.css">
     <script src="assets/bootstrap/js/jquery.min.js"></script>
@@ -35,7 +35,7 @@
     </main>
     <footer>
             <div class="footer-head">
-                <b>Designed & Maintained by SXC Web Team | © 2022 St. Xavier's College. All rights reserved.</b><a class="nav-link text-white" href="../index.php"><b>Home</b></a>
+                <b>Designed & Maintained by SXC Web Team | © 2022 St. Xavier's College. All rights reserved.</b><a class="nav-link text-white" href="index.php"><b>Home</b></a>
             </div>
     </footer>
 </body>

@@ -79,7 +79,7 @@
                             // document.querySelector(`#can${values.candidate_id} #candidate_name`).innerHTML=values.name;
                             // document.querySelector(`#can${values.candidate_id} #post_name`).innerHTML=values.post;
                             document.querySelector(`#can${values.candidate_id} #vote`).innerHTML = values.vote;
-                            if(data.max_post_data[values.post_id] && (data.max_post_data[values.post_id].max_candidate_id==values.candidate_id))
+                            if(data.max_post_data[values.post_id].max_candidate_id==values.candidate_id)
                             {
                                 document.querySelector(`#can${values.candidate_id} #vote_status`).innerHTML = '<img src="../assets/icons/up-arrow.svg" class="svg-icon" />';
                                 document.querySelector(`#can${values.candidate_id} #vote_status`).classList.add('up_vote');
@@ -97,13 +97,11 @@
                         }
                         else {
                             if(!pos_arr.includes(values.post_id)){
-                                if(!document.querySelector(`#post${values.post_id}`))
-                                table_ballot_all.innerHTML+=`<br><tr class='common_post' id='post${values.post_id}'><th id='common_post' style='text-align:left;text-transform:uppercase' colspan='4'>${values.post} ${(values.post_shift=='Both')?'':'('+values.post_shift+')'}</th><th id='common_post_vote'></th></tr>`;
+                                table_ballot_all.innerHTML+=`<br><tr class='common_post'><th id='common_post' style='text-align:left;text-transform:uppercase' colspan='4'>${values.post} ${(values.post_shift=='Both')?'':'('+values.post_shift+')'}</th><th id='common_post_vote'></th></tr>`;
                                 pos_arr.push(values.post_id);
                             }
-        
                             table_ballot_all.innerHTML += `
-            <tr class='' id=${'can' + values.candidate_id}><td id='candidate_id' class='pr-not' >${values.candidate_id}</td><td id='candidate_image'><img src='${values.image_url}' class='can_small_img'/></td><td id='candidate_name' style='text-transform:uppercase'>${values.name}</td><td id='regno'>${values.regno}</td><td id='vote_data'><b id='vote'>${values.vote}</b>  <span id='vote_status'${(data.max_post_data[values.post_id] && (data.max_post_data[values.post_id].max_candidate_id==values.candidate_id))?' class=up_vote ><img src="../assets/icons/up-arrow.svg" class="svg-icon" />':' class=down_vote><img src="../assets/icons/down-arrow.svg" class="svg-icon" />'}</span></td></tr>
+            <tr class='' id=${'can' + values.candidate_id}><td id='candidate_id' class='pr-not' >${values.candidate_id}</td><td id='candidate_image'><img src='${values.image_url}' class='can_small_img'/></td><td id='candidate_name' style='text-transform:uppercase'>${values.name}</td><td id='regno'>${values.regno}</td><td id='vote_data'><b id='vote'>${values.vote}</b>  <span id='vote_status'${(data.max_post_data[values.post_id].max_candidate_id==values.candidate_id)?' class=up_vote ><img src="../assets/icons/up-arrow.svg" class="svg-icon" />':' class=down_vote><img src="../assets/icons/down-arrow.svg" class="svg-icon" />'}</span></td></tr>
          
             `;
                         }

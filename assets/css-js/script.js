@@ -18,6 +18,22 @@ window.addEventListener("resize",(e)=>{
     }
        
 })
+function print_doc(id='')
+{
+    if(!id)
+    {
+        document.querySelectorAll(`#ballot_all tr:has(#vote_status[class='down_vote'])`).forEach(element=>{
+            element.style.display='none';
+        })
+    }
+    else
+    {
+        document.body.innerHTM=document.querySelector(`#${id}`).innerHTML;
+      
+    }
+    window.print();
+    location.reload();
+}
 document.addEventListener("DOMContentLoaded",(event)=>{
     const date=new Date();
     const academic_year=date.getFullYear()+'-'+((date.getFullYear()+1)%100);
@@ -36,10 +52,9 @@ document.addEventListener("DOMContentLoaded",(event)=>{
     {
         if(head)
         {
-           head.innerHTML+=`<link rel='shortcut icon' href='../assets/images/other_images/logo2.png' type='image/x-icon' /> `;
+           head.innerHTML+=`<link rel='shortcut icon' href='http://localhost/Vote_System/assets/images/other_images/logo2.png' type='image/x-icon' /> `;
         }
     }
-    console.log(tab_title);
     if(tab_title)
         tab_title.innerHTML=sxc_heading;
     if(footerhead)

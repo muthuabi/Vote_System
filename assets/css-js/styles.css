@@ -753,6 +753,18 @@ footer
 {
   position: relative;
 }
+#dyn_ballot td,#dyn_ballot thead th
+{
+    text-align: left;
+    border-bottom: none;
+}
+
+#dyn_ballot tbody tr
+{
+    border-bottom: 0.5px solid rgb(207, 205, 205);
+ 
+}
+
 @media screen and (min-width:768px) {
     .offcanvas {
         visibility: visible;
@@ -917,10 +929,10 @@ footer
     font-family: inherit;
     color: inherit;
   }
-  #ballot_all tr:has(#vote_status[class='down_vote'])
+  /* #ballot_all tr:has(#vote_status[class='down_vote'])
   {
     display: none;
-  }
+  } */
   /* table
   {
     font-size: small;

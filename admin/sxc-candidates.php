@@ -52,7 +52,9 @@
                     throw new Exception('No File Uploaded');
                 }
                 if ($add_candidate->insert())
+                {
                     echo "<script>modal_show('#responsemodal','Registered Successfully!');</script>";
+                }
                 else {
                     throw new Exception('Register Error! Some Error Occured');
                 }
