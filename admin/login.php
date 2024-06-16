@@ -32,11 +32,11 @@
         ?>
         <div class="form-container">
             <form action="" method="post" id="admin_login" class="login_form">
-                <h2 class="text-center">Admin Login</h2>
+                <h2 class="text-center">Officials Login</h2>
                 <div class="form-group">
                     <label for="username">Username</label>
                     <div class="input-group">
-                        <input type="text" name="username" required id="username" class="form-control">
+                        <input type="text" name="username" required id="username" value="<?php if(isset($_POST['username'])) echo $_POST['username']; ?>" class="form-control">
                         <span class="input-group-text"><img src="../assets/icons/user-icon.svg" class="svg-icon" /></span>
                     </div>
                 </div>
@@ -60,15 +60,23 @@
                                   $_SESSION['admin']=$validate_result['username'];
                                   $_SESSION['admin_name']=$validate_result['name'];
                                   $_SESSION['admin_email']=$validate_result['email'];
-                                 echo  $_SESSION['admin_role']=$validate_result['role'];
-                                 if($_SESSION['admin_role']=='father')
-                                 {
-                                        header("Location:../dynamic/dashboard.php");
-                                 }
-                                 else
-                                 {
-                                  header("Location:dashboard.php");
-                                 }
+                                  $_SESSION['admin_role']=$validate_result['role'];
+                                  switch($_SESSION['admin_role'])
+                                  {
+                                    case 'admin':
+                                        header('Location:./dashboard.php');
+                                        break;
+                                    case 'sub-admin':
+                                        header('location:../sub-admin/dashboard.php');
+                                        break;
+                                    case 'viewer':
+                                        header('location:../viewer/dashboard.php');
+                                        break;
+                                    case 'restricted':
+                                        throw new Exception('Access Restricted');
+                                    default:
+                                        throw new Exception('No Such Credentials');
+                                  }
                               }
                               else
                               {

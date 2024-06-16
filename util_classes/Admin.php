@@ -6,9 +6,11 @@
         private $conn;
         private $table='admin';
         private $old_table='old_data_table';
+        public $name='';
         public $username='';
         public $password='';
         public $email='';
+        public $role='viewer';
         public $error=null;
         public function __construct($conn)
         {
@@ -27,6 +29,59 @@
                 $this->error=$e;
                 return null;
             }
+        }
+        public function read_migrate_data()
+        {
+            try {
+                $qry = "Select * from {$this->old_table}";
+                $res = $this->conn->query($qry);
+                $position = [];
+                while ($result = $res->fetch_assoc()) {
+                    $position[] = $result;
+                }
+                return ['data' => $position, 'num_rows' => $res->num_rows];
+            } catch (Exception $e) {
+                echo $e->getMessage();
+                $this->error=$e;
+                return null;
+            }
+        }
+        public function read_admin_All()
+        {
+            try {
+                $qry = "Select * from {$this->table}";
+                $res = $this->conn->query($qry);
+                $position = [];
+                while ($result = $res->fetch_assoc()) {
+                    $position[] = $result;
+                }
+                return ['data' => $position, 'num_rows' => $res->num_rows];
+            } catch (Exception $e) {
+                echo $e->getMessage();
+                $this->error=$e;
+                return null;
+            }
+        }
+        public function read_admin_one($username)
+        {
+            try
+            {
+            $qry="Select * from {$this->table} where username=?";
+            $qry_prepare=$this->conn->prepare($qry);
+            $qry_prepare->bind_param("s",$username);
+            $qry_prepare->execute();
+            $res=$qry_prepare->get_result();
+            $data=$res->fetch_assoc();
+            if($res->num_rows==0)
+                throw new Exception('Not Valid');
+            return $data;
+            }
+            catch(Exception $e)
+            {
+                $this->error=$e;
+                return null;
+            }
+
         }
         public function validate_admin($username,$password)
         {
@@ -87,17 +142,47 @@
                 return null;
             }
         }
-        public function insert_admin($username,$name,$password,$email,$role)
+        public function update_admin($username)
+        {
+            try {
+               
+                $qry = "UPDATE {$this->table} SET `username`=?,`name`=?,`password`=?,`email`=?,`role`=? where username=?";
+                $qry_prepare = $this->conn->prepare($qry);
+                $qry_prepare->bind_param("ssssss", $this->username, $this->name, $this->password,$this->email,$this->role,$username);
+                $qry_prepare->execute();
+                return $this->conn->affected_rows;
+            } catch (Exception $e) {
+                $this->error=$e;
+                echo $e->getMessage();
+                return 0;
+            }
+        }
+        public function delete_admin($username)
+        {
+            try {
+                $qry = "DELETE FROM {$this->table} where username=?";
+                $qry_prepare = $this->conn->prepare($qry);
+                $qry_prepare->bind_param("s", $username);
+                $qry_prepare->execute();
+                return $this->conn->affected_rows;
+            } catch (Exception $e) {
+                echo $e->getMessage();
+                $this->error=$e;
+                return 0;
+            }
+        }
+        public function insert_admin()
         {
             try
             {
             $qry="Insert Into {$this->table}(`username`,`name`,`password`,`email`,`role`) VALUES(?,?,?,?,?)";
             $qry_prepare=$this->conn->prepare($qry);
-            $qry_prepare->bind_param("sssss",$username,$name,$password,$email,$role);
+            $qry_prepare->bind_param("sssss",$this->username,$this->name,$this->password,$this->email,$this->role);
             return $qry_prepare->execute();
             }
             catch(Exception $e)
             {
+                echo $e->getMessage();
                 $this->error=$e;
                 return null;
             }

@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if(isset($_SESSION['admin']) && !empty($_SESSION['admin']) && isset($_SESSION['admin_role']) && $_SESSION['admin_role']=='admin')
+    if(isset($_SESSION['admin']) && !empty($_SESSION['admin']) && isset($_SESSION['admin_role']) && $_SESSION['admin_role']=='viewer')
     {
         header("location:dashboard.php");
     }

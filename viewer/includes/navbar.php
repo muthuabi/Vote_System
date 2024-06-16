@@ -1,4 +1,4 @@
-    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
     <script src='../assets/bootstrap/js/jquery.min.js'></script>
     <script src='../assets/bootstrap/js/bootstrap.bundle.min.js'></script>
     <link rel="stylesheet" href="../assets/css-js/styles.css">
@@ -7,7 +7,7 @@
 <?php 
     //error_reporting(E_ALL && ~E_WARNING);
     session_start();
-    if(isset($_SESSION['admin']) && !empty($_SESSION['admin']) && (isset($_SESSION['admin_role']) && $_SESSION['admin_role']=='admin'))
+    if(isset($_SESSION['admin']) && !empty($_SESSION['admin']) && (isset($_SESSION['admin_role']) && $_SESSION['admin_role']=='viewer'))
     {
         $admin=$_SESSION['admin'];
     }
@@ -16,14 +16,14 @@
         header('HTTP/1.1 403 Access Forbidden');
         http_response_code(403);
         echo "<center><b>Access Forbidden<br>
-            <a href='login.php'class='btn btn-link opacity-hover'>Login to Access</a>
+            <a href='../admin/login.php'class='btn btn-link opacity-hover'>Login to Access</a>
         </b></center>";
         exit();
     }
     if(isset($_POST['admin_logout']))
     {
         session_destroy();
-        header("Location:login.php");
+        header("Location:../admin/login.php");
     }
 
 ?>
@@ -90,7 +90,7 @@ if(isset($_POST['change_pass']))
       <div class="toast-body">
         <b style="color:rgb(99, 96, 96)" id="message"></b>
       </div>
-    </div>
+</div>
 <nav class="navbar navbar-expand">
 
     <div class="container-fluid">
@@ -114,31 +114,26 @@ if(isset($_POST['change_pass']))
             </div>
             <form method="post" id="change_pass_temp_form">
                 <button class="btn btn-dark" type='submit' name='admin_logout'>SignOut</button>
-                
             </form>
         </div>
     </div>
 </nav>
 <section class="main-sidebar offcanvas offcanvas-start" tabindex="-1" id="maincanvas" aria-labelledby="maincanvasLabel">
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="maincanvasLabel">SXC Elections</h5>
+        <h5 class="offcanvas-title " id="maincanvasLabel">SXC Election</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close">
         </button>
     </div>
-    <div class="offcanvas-body ">
-       
+    <div class="offcanvas-body">
+    
         <div class="sidebar-card">
+           
             <ul class="nav navbar-nav">
                 <li class="nav-item"><a href="dashboard.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='dashboard.php')  echo 'nav-active'  ?>">Dashboard</a></li>
-                <li class="nav-item"><a href="sxc-positions.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='sxc-positions.php')  echo 'nav-active'  ?>">Add Positions</a></li>
-                <li class="nav-item"><a href="sxc-candidates.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='sxc-candidates.php')  echo 'nav-active'  ?>">Add Candidates</a></li>
-                <li class="nav-item"><a href="sxc-admin.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='sxc-admin.php')  echo 'nav-active'  ?>">Add Admin</a></li>
-                <?php if(str_contains($_SERVER['REQUEST_URI'],'individual-post.php'))  echo "<li class='nav-item'><a href='#' class='nav-link nav-active'>Individual Candidates</a></li>";?>
+                <?php if(str_contains($_SERVER['REQUEST_URI'],'individual-post.php'))  echo "<li class='nav-item'><a href='#' class='nav-link nav-active'>Candidates</a></li>";?>
                 <li class="nav-item"><a href="dyn_ballot.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='dyn_ballot.php')  echo 'nav-active'  ?>">Ballot Table</a></li>
-                <li class="nav-item"><a href="sxc-old-ballot.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='sxc-old-ballot.php')  echo 'nav-active'  ?>">Old Ballot Table</a></li>
-                <li class="nav-item"><a href="sxc-migrate.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='sxc-migrate.php')  echo 'nav-active'  ?>">Migrate Data</a></li>
-                <li class="nav-item"><a href="sxc-termination.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='sxc-termination.php')  echo 'nav-active'  ?>">Delete Table</a></li>
                 <li class="nav-item"><button   type='submit' name="admin_change_pass" style="width:100%;text-align:left" class="btn btn-link  nav-link <?php if(isset($_POST['admin_change_pass'])) echo 'nav-active'; ?> " form="change_pass_temp_form" >Change Password</button> </li>
+            
             </ul>
 
         </div>
