@@ -1,5 +1,7 @@
-const maincanvas=document.querySelector("#maincanvas");
+
 window.addEventListener("resize",(e)=>{
+  
+
     if(maincanvas)
     {
        if(window.innerWidth>=768)
@@ -36,6 +38,7 @@ function print_doc(id='')
 }
 document.addEventListener("DOMContentLoaded",(event)=>{
     const date=new Date();
+    const maincanvas=document.querySelector("#maincanvas");
     const academic_year=date.getFullYear()+'-'+((date.getFullYear()+1)%100);
     const sxc_footer_head=`Designed & Maintained by SXC ERP and Web Team | © 2024 St. Xavier's College. All rights reserved`;
     const sxc_heading='Students Council Election '+academic_year;

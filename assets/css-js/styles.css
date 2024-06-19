@@ -91,7 +91,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        background-color: white;
+        background-color: rgba(241, 232, 213, 0.87);
         padding:3rem 1rem;
         border-radius: 7px;
         margin: 1.5rem;
@@ -226,7 +226,7 @@ nav .btn.btn-dark
 }
 
 .offcanvas {
-    z-index: 10000;
+    z-index: 100000;
     visibility: visible;
 
 }
@@ -239,6 +239,14 @@ table.table.sxc-candidates
 {
     font-size: 80%;
     
+}
+.sxc-candidates tbody tr td:first-of-type,.sxc-candidates thead tr th:first-of-type
+{
+  display: none;
+}
+.sxc-positions tbody tr td:first-of-type,.sxc-positions thead tr th:first-of-type
+{
+  display: none;
 }
 table .can_small_img
 {
@@ -801,6 +809,7 @@ footer
       .offcanvas
       {
         width: 350px;
+
       }  
       #ballot_head b
       {

@@ -29,7 +29,7 @@
         if (isset($_POST['add_admin'])) {
             try {
                 $add_admin=new Admin($conn);
-                $add_admin->username=$_POST['username'];
+                $add_admin->username=trim($_POST['username']);
                 $add_admin->name=$_POST['name'];
                 $add_admin->password=base64_encode($_POST['password']);
                 $add_admin->email=$_POST['email'];
@@ -46,17 +46,18 @@
         }
         if (isset($_POST['edit_admin'])) {
             try {
+              
                 $edit_admin=new Admin($conn);
-                $edit_admin->username=$_POST['username'];
+                $edit_admin->username=trim($_POST['username']);
                 $edit_admin->name=$_POST['name'];
                 $edit_admin->password=base64_encode($_POST['password']);
                 $edit_admin->email=$_POST['email'];
                 $edit_admin->role=$_POST['role'];
-                if ($edit_admin->update_admin($_POST['username']))
+                if ($edit_admin->update_admin(trim($_POST['old_username'])))
                     echo "<script>modal_show('#responsemodal','Updated Successfully!');</script>";
                 else 
                 {
-                    if($edit_candidate->error)
+                    if($edit_admin->error)
                         throw new Exception('Update Error! Some Error Occured');
                     echo "<script>modal_show('#responsemodal','Updated with no changes Successfully!');</script>";
                 }
@@ -66,7 +67,8 @@
         }
         if (isset($_POST['delete']) && trim($_POST['delete'])) {
             try {
-                if ($admin->delete_admin($_POST['delete']))
+                
+                if ($admin->delete_admin(trim($_POST['delete'])))
                     echo "<script>modal_show('#responsemodal','Deleted Successfully!');</script>";
                 else
                     throw new Exception('Deletion Unsuccessful');
@@ -100,7 +102,7 @@
                                     User Name
                                 </label>
                                 <input type="text" name='username' value="<?php if (isset($value)) echo $value['username']; ?>" required id='username' class="form-control">
-                                <?php if (isset($value)) echo "<input type='hidden' name='username' value='{$value['username']} ' />" ?>
+                                <?php if (isset($value)) echo "<input type='hidden' name='old_username' value='{$value['username']} ' />" ?>
                             </div>
                             
                             <div class="form-group">
@@ -151,7 +153,7 @@
                    
               
        echo "<div class='table-responsive '>
-        <table class='table my-2 sxc-positions '>
+        <table class='table my-2'>
             <thead>
                 <tr>
                     <th>Username</th>
@@ -171,7 +173,7 @@
                 if($data[$i]['role']=='admin')
                     continue;
                         echo "<tr><td>{$data[$i]['username']}</td><td>{$data[$i]['name']}</td><td>{$data[$i]['role']}</td><td>{$data[$i]['email']}</td><td id='password-column'>".base64_decode($data[$i]['password'])."</td><td>{$data[$i]['updated_on']}</td>
-                <td><button class='btn btn-warning' type='submit' name='edit' value={$data[$i]['username']} form='form_temp'>Edit</button></td><td><button class='btn btn-danger' type='submit' name='delete' value={$data[$i]['username']} form='form_temp'>Delete</button></td></tr>";
+                <td><button class='btn btn-warning' type='submit' name='edit' value='{$data[$i]['username']}' form='form_temp'>Edit</button></td><td><button class='btn btn-danger' type='submit' name='delete' value='{$data[$i]['username']}' form='form_temp'>Delete</button></td></tr>";
                     }
                 
             echo "</tbody>
