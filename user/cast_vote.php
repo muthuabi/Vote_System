@@ -85,8 +85,12 @@
     
             if (isset($_POST['add_vote'])) {
                 try {
+                    //print_r($_POST);
+                    if($_POST['post_name']!='Chairman' && $_POST['post_name']!="Join Secretary")
+                    {
                     if (!$vote->addVote($_POST['candidate_id']))
                         throw new Exception('Some Error has Occured');
+                    }
                     $_SESSION[$_POST['post_name']] = ['candidate_id' => $_POST['candidate_id'], 'candidate_name' => $_POST['candidate_name'], 'candidate_regno' => $_POST['regno']];
                 } catch (Exception $e) {
                     die($e->getMessage());
@@ -129,7 +133,9 @@
                                 <b class='card-text' id='candidate_regno'>{$candidates[$j]['regno']}</b>
                                 </div>
                                 <center>
-                                <button class='btn btn-success vote_btn'  type='submit' name='add_vote'>Vote</button>
+                                <button class='btn btn-success vote_btn'  type='submit' name='add_vote'>";
+                                    if($post_id_name[$i]['post']!="Chairman" && $post_id_name[$i]['post']!="Join Secretary") echo "Vote";else echo "Next";
+                                echo"</button>
                                </center>
                                 <input type='hidden' name='candidate_name' value='{$candidates[$j]['name']}' />
                                 <input type='hidden' name='regno' value='{$candidates[$j]['regno']}' />
