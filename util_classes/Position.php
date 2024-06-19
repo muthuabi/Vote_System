@@ -94,6 +94,7 @@ class Position
             if ($this->who_can_vote != 'M' && $this->who_can_vote != 'F' && $this->who_can_vote!='MF') {
                 throw new Exception('who can vote should be MF,M or F');
             }
+            $this->post=trim($this->post);
             $qry = "INSERT INTO {$this->table} (`post`,`description`,`post_shift`,`who_can_vote`) VALUES (?,?,?,?)";
             $qry_prepare = $this->conn->prepare($qry);
             $qry_prepare->bind_param("ssss", $this->post, $this->description, $this->post_shift,$this->who_can_vote);
@@ -140,11 +141,15 @@ class Position
             if ($this->who_can_vote != 'M' && $this->who_can_vote != 'F' && $this->who_can_vote!='MF') {
                 throw new Exception('who can vote should be MF,M or F');
             }
+            $this->post=trim($this->post);
             $qry = "UPDATE {$this->table} SET `post`=?,`description`=?,`post_shift`=?,`who_can_vote`=? where post_id=?";
             $qry_prepare = $this->conn->prepare($qry);
             $qry_prepare->bind_param("ssssi", $this->post, $this->description, $this->post_shift,$this->who_can_vote ,$id);
             $qry_prepare->execute();
-            return $this->conn->affected_rows;
+            if($this->conn->affected_rows> 0)
+                return $this->conn->affected_rows;
+            throw new Exception('Update Error');
+           
         } catch (Exception $e) {
             $this->error=$e;
             echo $e->getMessage();

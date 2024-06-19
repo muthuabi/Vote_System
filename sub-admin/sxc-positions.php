@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Canditate</title>
+    <title>New Positions</title>
    
 </head>
 
@@ -22,8 +22,9 @@
         include_once("includes/response_modal.php");
       
         ?>
-        <div class='alert alert-warning alert-dismissible fade show d-none' role='alert'>
+        <div class='alert alert-warning alert-dismissible fade show' role='alert'>
             <buton type='button'  class="btn-close" data-bs-dismiss='alert'></buton>
+            <b>Warnings will be displayed Here</b><br>
 
         <?php
         if (isset($_POST['add_position'])) {
@@ -55,7 +56,7 @@
                     echo "<script>modal_show('#responsemodal','Updated Successfully!');</script>";
                 else 
                 {
-                    if($edit_candidate->error)
+                    if($edit_position->error)
                         throw new Exception('Update Error! Some Error Occured');
                     echo "<script>modal_show('#responsemodal','Updated with no changes Successfully!');</script>";
                 }
@@ -99,6 +100,7 @@
                                 </label>
                                 <input type="text" name='post' value="<?php if (isset($value)) echo $value['post']; ?>" required id='post' class="form-control">
                                 <?php if (isset($value)) echo "<input type='hidden' name='post_id' value='{$value['post_id']} ' />" ?>
+                                <small>Type the valid Post Name</small>
                             </div>
                             <div class="form-group">
                                 <label for="description">Description</label>
@@ -113,7 +115,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="who_can_vote">Shift</label>
+                                <label for="who_can_vote">Who can vote</label>
                                 <select name='who_can_vote' id='who_can_vote' class='form-control'>
                                     <option value='MF' <?php if (isset($value) && ($value['who_can_vote'] == 'MF')) echo 'selected'; ?>>Male & Female</option>
                                     <option value='M' <?php if (isset($value) && ($value['who_can_vote'] == 'M')) echo 'selected'; ?>>Male</option>

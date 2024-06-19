@@ -24,9 +24,9 @@
         include_once("../util_classes/Vote.php");
         $types = ['image/jpeg', 'image/png', 'image/jpg','image/webp','image/jfif'];
         ?>
-        <div class='alert alert-warning alert-dismissible fade show d-none ' role='alert'>
+     <div class='alert alert-warning alert-dismissible fade show' role='alert'>
             <buton type='button'  class="btn-close" data-bs-dismiss='alert'></buton>
-
+            <b>Warnings will be displayed Here</b><br>
         <?php
         if (isset($_POST['add_candidate'])) {
             try {
@@ -41,9 +41,9 @@
                 if (isset($_FILES['image_url'])) {
                    
                     if (!in_array($_FILES['image_url']['type'], $types))
-                        throw new Exception('File Should be Png,Jpg or Jpeg');
-                    if ($_FILES['image_url']['size'] > (1024 * 1024))
-                        throw new Exception('File Size should be less than 1mb');
+                        throw new Exception('File Should be Png,Jpg,Webp,Jfif or Jpeg');
+                    if ($_FILES['image_url']['size'] > (500 * 1024))
+                        throw new Exception('File Size should be less than 500kb');
                     if ($add_candidate->fileUpload($_FILES['image_url'])) {
                         echo "File Upload Sucess" . $add_candidate->image_url;
                     } else
@@ -77,7 +77,7 @@
                 if (isset($_FILES['image_url']) && !$_FILES['image_url']['error']) {
                    
                     if (!in_array($_FILES['image_url']['type'], $types))
-                        throw new Exception('File Should be Png,Jpg or Jpeg');
+                        throw new Exception('File Should be Png,Jpg,Webp,Jfif or Jpeg');
                     if ($_FILES['image_url']['size'] > (1024 * 1024))
                         throw new Exception('File Size should be less than 1mb');
                     if ($edit_candidate->fileUpdate($_FILES['image_url'])) {
@@ -136,7 +136,7 @@
                                 <label for="regno">
                                     Register Number
                                 </label>
-                                <input type="text" name='regno' value="<?php if (isset($value)) echo $value['regno']; ?>" required id='regno' class="form-control">
+                                <input type="text" name='regno' value="<?php if (isset($value)) echo $value['regno']; ?>" required id='regno' placeholder="Eg:21UCS107" class="form-control">
                                 <?php if (isset($value)) echo "<input type='hidden' name='candidate_id' value='{$value['candidate_id']} ' />" ?>
                             </div>
 
@@ -146,14 +146,18 @@
                                 </label>
                                 <input type="file" name='image_url' <?php if(!isset($value)) echo 'required'; ?> id='image_url' class="form-control">
                                 <?php if (isset($value)){ echo "<input name='image_update_url' type='hidden' value='{$value['image_url']}' /><small >"; echo basename($value['image_url']); echo "</small>";} ?>
+                                <small>File should be of type png | jpeg | jpg | webp | jfif</small>
+                                <small>File size should be below 500kb</small>
                             </div>
                             <div class="form-group">
                                 <label for="name">Name</label>
                                 <input type="text" name='name' id='name' value="<?php if (isset($value)) echo $value['name']; ?>" required class='form-control'>
+                                <small>Name should be legit</small>
                             </div>
                             <div class="form-group">
                                 <label for="course">Course</label>
-                                <input type="text" name='course' id='course' value="<?php if (isset($value)) echo $value['course']; ?>" required class="form-control">
+                                <input type="text" name='course' placeholder="Eg:BSC COMPUTER SCIENCE" id='course' value="<?php if (isset($value)) echo $value['course']; ?>" required class="form-control">
+                               
                             </div>
                             <div class="form-group">
                                 <label for="shift">Candidate's Shift</label>

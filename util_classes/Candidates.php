@@ -148,6 +148,7 @@
             {
                 throw new Exception('Shift Shoulde be either 1 or 2');
             }
+            $this->course=strtoupper(trim($this->course));
             $qry="INSERT INTO {$this->table} (`regno`,`name`,`shift`,`course`,`year`,`post_id`,`vote_count`,`image_url`,`election_year`) VALUES (?,?,?,?,?,?,?,?,?)";
             $qry_prepare=$this->conn->prepare($qry);
             $qry_prepare->bind_param("ssssiiiss",$this->regno,$this->name,$this->shift,$this->course,$this->year,$this->post_id,$this->vote_count,$this->image_url,$this->election_year);
@@ -200,12 +201,15 @@
         public function update($id)
         {
             try{
+            $this->course=strtoupper(trim($this->course));
             $qry="UPDATE {$this->table} SET `regno`=?,`name`=?,`shift`=?,`course`=?,`year`=?,`post_id`=?,`vote_count`=?,`image_url`=?,`election_year`=? where candidate_id=?";
             $qry_prepare=$this->conn->prepare($qry);
             $qry_prepare->bind_param("ssssiiissi",$this->regno,$this->name,$this->shift,$this->course,$this->year,$this->post_id,$this->vote_count,$this->image_url,$this->election_year,$id);
             $qry_prepare->execute();
             $this->error=null;
-            return $this->conn->affected_rows;
+            if($this->conn->affected_rows> 0)
+                return $this->conn->affected_rows;
+            throw new Exception('Update Error');
             }
             catch(Exception $e)
             {

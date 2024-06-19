@@ -240,6 +240,15 @@ table.table.sxc-candidates
     font-size: 80%;
     
 }
+.sxc-candidates thead tr th
+{
+  text-align: left;
+}
+
+.sxc-positions thead tr th
+{
+  text-align: left;
+}
 .sxc-candidates tbody tr td:first-of-type,.sxc-candidates thead tr th:first-of-type
 {
   display: none;
@@ -276,6 +285,33 @@ form .form-group
     display: flex;
     flex-direction: column;
     gap:0.3rem;
+}
+@keyframes small_err_message {
+  from
+  {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to
+  {
+    opacity: 100%;
+    transform: translateY(0px);
+  }
+  
+}
+form .form-group small
+{
+  display: none;
+  color:orange;
+  animation: small_err_message 0.5s ease-in-out;
+}
+form .form-group .form-control:hover ~ small
+{
+  display: block;
+}
+form .form-group .form-control:focus ~ small
+{
+  display: block;
 }
 .modal
 {
@@ -384,7 +420,15 @@ form.login_form.criteria_form .form-control
     width: 100%;
     background-color: #ddd3c5cb;
     padding: 0.5rem 1rem;
+    justify-content: center;
+    text-transform: uppercase;
   }
+  .card-container-head h2
+  {
+    font-weight: bolder;
+    letter-spacing: 0.3rem;
+  }
+
   .card.candidate-card
   {
     margin:0.5rem;

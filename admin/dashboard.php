@@ -18,6 +18,7 @@
         <?php include_once('includes/navbar.php'); ?>
    </header>
     <main class='content-wrapper'>
+      
         <div class='dashboard-post-cards' id="dashboard_post_cards">
            
         </div>

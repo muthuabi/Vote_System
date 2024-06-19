@@ -34,9 +34,11 @@
         <nav class="sxc-council-header">
             <h5>Students Council Election 2024-25</h5>
         </nav>
+	<a class="nav-link text-white opacity-hover" style='position:fixed;top:1rem;right:1rem;' href="../index.php"><b>Home</b></a>
     </header>
-
+	
     <header>
+
         <?php
         session_start();
         if (isset($_POST['rechoose'])) {
@@ -80,6 +82,7 @@
 
 
     <?php
+    
             if (isset($_POST['add_vote'])) {
                 try {
                     if (!$vote->addVote($_POST['candidate_id']))
@@ -185,11 +188,11 @@
     ?>
     </main>
 
-    <footer>
+    <!--<footer>
         <div class="footer-head">
-            <b>Designed & Maintained by SXC Web Team | © 2022 St. Xavier's College. All rights reserved.</b><a class="nav-link text-white" href="../index.php"><b>Home</b></a>
+            <b>Designed & Maintained by SXC Web Team | © 2022 St. Xavier's College. All rights reserved.</b><a class="nav-link text-white opacity-hover" href="../index.php"><b>Home</b></a>
         </div>
-    </footer>
+    </footer>-->
 </body>
 
 </html>
