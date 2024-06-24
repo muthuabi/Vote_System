@@ -20,24 +20,25 @@ window.addEventListener("resize",(e)=>{
     }
        
 })
-function print_doc(id='')
-{
-    if(!id)
-    {
-        document.querySelectorAll(`#ballot_all tr:has(#vote_status[class='down_vote'])`).forEach(element=>{
-            element.style.display='none';
-        })
-    }
-    else
-    {
-        document.body.innerHTM=document.querySelector(`#${id}`).innerHTML;
+// function print_doc(id='')
+// {
+//     if(!id)
+//     {
+//         document.querySelectorAll(`#ballot_all tr:has(#vote_status[class='down_vote'])`).forEach(element=>{
+//             element.style.display='none';
+//         })
+//     }
+//     else
+//     {
+//         document.body.innerHTM=document.querySelector(`#${id}`).innerHTML;
       
-    }
-    window.print();
-    location.reload();
-}
+//     }
+//     window.print();
+//     location.reload();
+// }
 document.addEventListener("DOMContentLoaded",(event)=>{
     const date=new Date();
+    
     maincanvas=document.querySelector("#maincanvas");
     const academic_year=date.getFullYear()+'-'+((date.getFullYear()+1)%100);
     const sxc_footer_head=`Designed & Maintained by SXC ERP and Web Team | © 2024 St. Xavier's College. All rights reserved`;

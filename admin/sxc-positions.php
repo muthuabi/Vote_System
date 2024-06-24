@@ -32,6 +32,7 @@
                 $add_position=new Position($conn);
                 $add_position->post=$_POST['post'];
                 $add_position->post_shift=$_POST['post_shift'];
+                $add_position->post_status=$_POST['post_status'];
                 $add_position->description=$_POST['description'];
                 $add_position->who_can_vote=$_POST['who_can_vote'];
                 if ($add_position->insert())
@@ -49,6 +50,7 @@
                 $edit_position = new Position($conn);
                 $edit_position->post=$_POST['post'];
                 $edit_position->post_shift=$_POST['post_shift'];
+                $edit_position->post_status=$_POST['post_status'];
                 $edit_position->description=$_POST['description'];
                 $edit_position->who_can_vote=$_POST['who_can_vote'];
                 // $edit_candidate->post_id = $_POST['post_id'];
@@ -115,6 +117,14 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label for="post_status">Shift</label>
+                                <select name='post_status' id='post_status' class='form-control'>
+                                    <option value='opposed' <?php if (isset($value) && ($value['post_status'] == 'opposed')) echo 'selected'; ?>>Opposed</option>
+                                    <option value='unopposed' <?php if (isset($value) && ($value['post_status'] == 'unopposed')) echo 'selected'; ?>>Unopposed</option>
+                                    <option value='nocontest' <?php if (isset($value) && ($value['post_status'] == 'nocontest')) echo 'selected'; ?>>No Contest</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="who_can_vote">Who can vote</label>
                                 <select name='who_can_vote' id='who_can_vote' class='form-control'>
                                     <option value='MF' <?php if (isset($value) && ($value['who_can_vote'] == 'MF')) echo 'selected'; ?>>Male & Female</option>
@@ -150,15 +160,14 @@
                     <th>Position</th>
                     <th>Description</th>
                     <th>Shift</th>
+                    <th>Status</th>
                     <th>Who Can Vote</th>
-                   
-             
                     <th colspan='2'>Actions</th>
                 </tr>
             </thead>
             <tbody>";
 			 for ($i = 0; $i < count($data); $i++) {
-                        echo "<tr><td>{$data[$i]['post_id']}</td><td>{$data[$i]['post']}</td><td>{$data[$i]['description']}</td><td>{$data[$i]['post_shift']}</td><td>{$data[$i]['who_can_vote']}</td>
+                        echo "<tr><td>{$data[$i]['post_id']}</td><td>{$data[$i]['post']}</td><td>{$data[$i]['description']}</td><td>{$data[$i]['post_shift']}</td><td>{$data[$i]['post_status']}</td><td>{$data[$i]['who_can_vote']}</td>
                 <td><button class='btn btn-warning' type='submit' name='edit' value={$data[$i]['post_id']} form='form_temp'>Edit</button></td><td><button class='btn btn-danger' type='submit' name='delete' value={$data[$i]['post_id']} form='form_temp'>Delete</button></td></tr>";
                     }
                 

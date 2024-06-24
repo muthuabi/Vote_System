@@ -15,10 +15,35 @@
 
 <body>
    <header>
-        <?php include_once('includes/navbar.php'); ?>
+        <?php include_once('includes/navbar.php');
+        
+        ?>
    </header>
     <main class='content-wrapper'>
-      
+        <form action='' method='post' class="poll_form">
+            <?php
+                include_once("../util_classes/Polls.php");
+                try{
+                if(isset($_POST['start']))
+                {
+                    if($poll->init_status($_POST['start'],'started'))
+                        echo 'Poll Started';
+                }
+                if(isset($_POST['end']))
+                {
+                    if($poll->init_status($_POST['end'],'ended'))
+                        echo 'Poll Ended';
+                }
+                }
+                catch(Exception $e)
+                {
+                    echo $e->getMessage();
+                }
+              
+            ?>
+                <button type='submit' name='start' value="<?php echo $academic_year; ?>" class='btn btn-success '>Start Polling</button>
+                <button type='submit' name='end' value="<?php echo $academic_year; ?>" class='btn btn-danger '>End Polling</button>
+        </form>
         <div class='dashboard-post-cards' id="dashboard_post_cards">
            
         </div>
@@ -37,7 +62,7 @@
                     //console.log(data);
                     data.data.forEach(values => {
                         if (document.querySelector(`#post${values.post_id}`)) {
-                            document.querySelector(`#post${values.post_id} #total_votes`).innerHTML=values.total_votes;
+                            document.querySelector(`#post${values.post_id} #total_votes`).innerHTML=values.total_votes||0;
                         }
                         else {
                             ballot_post.innerHTML += `

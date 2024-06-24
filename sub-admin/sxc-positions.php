@@ -32,6 +32,7 @@
                 $add_position=new Position($conn);
                 $add_position->post=$_POST['post'];
                 $add_position->post_shift=$_POST['post_shift'];
+                $add_position->post_status=$_POST['post_status'];
                 $add_position->description=$_POST['description'];
                 $add_position->who_can_vote=$_POST['who_can_vote'];
                 if ($add_position->insert())
@@ -49,6 +50,7 @@
                 $edit_position = new Position($conn);
                 $edit_position->post=$_POST['post'];
                 $edit_position->post_shift=$_POST['post_shift'];
+                $edit_position->post_status=$_POST['post_status'];
                 $edit_position->description=$_POST['description'];
                 $edit_position->who_can_vote=$_POST['who_can_vote'];
                 // $edit_candidate->post_id = $_POST['post_id'];

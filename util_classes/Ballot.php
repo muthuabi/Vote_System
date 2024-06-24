@@ -1,6 +1,8 @@
 <?php
     header("Acess-Control-Allow-Origin:*");
     include_once('../connection/connection.php');
+    include_once('../util_classes/Polls.php');
+    
     class Ballot
     {
         private $conn=null;
@@ -110,6 +112,7 @@
                 $votes[]=$result;
             }
             //print_r($votes);
+            
             return ['data'=>$votes,'max_post_data'=>$this->showMaxbyPostAll(),'num_rows'=>$res->num_rows];
             }
             catch(Exception $e)
@@ -129,7 +132,11 @@
         switch($ballot_case)
         {
             case 'BALLOT_ALL':
-                echo json_encode($ballot->showBallotAll());
+                $result=$ballot->showBallotAll();
+                $result['poll_status']='not_started';
+                if($data=$poll->get_status($academic_year))
+                    $result['poll_status']=$data['poll_status'];
+                echo json_encode($result);
                 break;
             case 'BALLOT_POST_ID':
                 if(isset($_GET['post_id']) && !empty(trim($_GET['post_id'])))

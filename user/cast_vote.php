@@ -34,12 +34,11 @@
         <nav class="sxc-council-header">
             <h5>Students Council Election 2024-25</h5>
         </nav>
-	<a class="nav-link text-white opacity-hover" style='position:fixed;top:1rem;right:1rem;' href="../index.php"><b>Home</b></a>
     </header>
-	
-    <header>
 
+    <header>
         <?php
+   
         session_start();
         if (isset($_POST['rechoose'])) {
             session_destroy();
@@ -65,7 +64,19 @@
             include_once("../util_classes/Position.php");
             include_once("../util_classes/Candidates.php");
             include_once("../util_classes/Vote.php");
+            include_once("../util_classes/Polls.php");
+          
             try {
+                if($data=$poll->get_status($academic_year))
+                {
+                    if($data['poll_status']=='ended')
+                        die("<center><b>Poll Ended</b></center>");
+                }
+                else
+                    die("<center><b>Poll Not Started Yet! Refresh After Announcement from Officials</b></center>");
+
+
+
                 if ($data = $pos->readShiftGenderAll($shift, $vote_gender)) {
                     $post_array = $data['data'];
                 } else
@@ -82,11 +93,9 @@
 
 
     <?php
-    
             if (isset($_POST['add_vote'])) {
                 try {
-                    //print_r($_POST);
-                    if($_POST['post_name']!='Chairman' && $_POST['post_name']!="Join Secretary")
+                    if($_POST['post_status']=='opposed')
                     {
                     if (!$vote->addVote($_POST['candidate_id']))
                         throw new Exception('Some Error has Occured');
@@ -97,7 +106,7 @@
                 }
             }
             for ($i = 0; $i < count($post_array); $i++) {
-                $post_id_name[] = ['post_id' => $post_array[$i]['post_id'], 'post' => $post_array[$i]['post'], 'post_shift' => $post_array[$i]['post_shift']];
+                $post_id_name[] = ['post_id' => $post_array[$i]['post_id'], 'post' => $post_array[$i]['post'], 'post_shift' => $post_array[$i]['post_shift'],'post_status'=>$post_array[$i]['post_status'] ];
             }
 
 
@@ -107,7 +116,7 @@
                 }
                 $_SESSION['init'] = 'init';
             }
-
+            
             $voted = false;
             for ($i = 0; $i < count($post_id_name); $i++) {
                 $voted = true;
@@ -132,15 +141,17 @@
                                 <h5 class='text-uppercase' id='candidate_name'>{$candidates[$j]['name']}</h5>
                                 <b class='card-text' id='candidate_regno'>{$candidates[$j]['regno']}</b>
                                 </div>
-                                <center>
-                                <button class='btn btn-success vote_btn'  type='submit' name='add_vote'>";
-                                    if($post_id_name[$i]['post']!="Chairman" && $post_id_name[$i]['post']!="Join Secretary") echo "Vote";else echo "Next";
-                                echo"</button>
-                               </center>
                                 <input type='hidden' name='candidate_name' value='{$candidates[$j]['name']}' />
                                 <input type='hidden' name='regno' value='{$candidates[$j]['regno']}' />
                                 <input type='hidden' name='candidate_id' value='{$candidates[$j]['candidate_id']}'/>
                                 <input type='hidden' name='post_name' value='{$post_id_name[$i]['post']}'/>
+                                <input type='hidden' name='post_status' value='{$post_id_name[$i]['post_status']}'/>
+                                <center>
+                                <button class='btn btn-success vote_btn'  type='submit' name='add_vote'>"; 
+                                echo ($post_id_name[$i]['post_status']=='opposed')?'Vote':'Next';
+                                echo "</button>
+                               </center>
+                               
                                
                             </form>";
                         }
@@ -194,11 +205,11 @@
     ?>
     </main>
 
-    <!--<footer>
+    <footer>
         <div class="footer-head">
-            <b>Designed & Maintained by SXC Web Team | © 2022 St. Xavier's College. All rights reserved.</b><a class="nav-link text-white opacity-hover" href="../index.php"><b>Home</b></a>
+            <b>Designed & Maintained by SXC Web Team | © 2022 St. Xavier's College. All rights reserved.</b><a class="nav-link text-white" href="../index.php"><b>Home</b></a>
         </div>
-    </footer>-->
+    </footer>
 </body>
 
 </html>

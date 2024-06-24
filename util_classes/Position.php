@@ -9,6 +9,7 @@ class Position
     public $post = null;
     public $description = '';
     public $post_shift = null;
+    public $post_status='opposed';
     public $who_can_vote='';
     public $error=null;
     public function __construct($conn)
@@ -53,7 +54,7 @@ class Position
     public function readShiftGenderAll($post_shift,$gender)
     {
         try {
-            $qry = "Select * from {$this->table} where (post_shift=? or post_shift='Both') and (who_can_vote=? or who_can_vote='MF'); ";
+            $qry = "Select * from {$this->table} where (post_shift=? or post_shift='Both') and (who_can_vote=? or who_can_vote='MF') and post_status!='nocontest'; ";
             $qry_prepare=$this->conn->prepare($qry);
             $qry_prepare->bind_param("ss",$post_shift,$gender);
             $qry_prepare->execute();
@@ -95,9 +96,9 @@ class Position
                 throw new Exception('who can vote should be MF,M or F');
             }
             $this->post=trim($this->post);
-            $qry = "INSERT INTO {$this->table} (`post`,`description`,`post_shift`,`who_can_vote`) VALUES (?,?,?,?)";
+            $qry = "INSERT INTO {$this->table} (`post`,`description`,`post_shift`,`who_can_vote`,`post_status`) VALUES (?,?,?,?,?)";
             $qry_prepare = $this->conn->prepare($qry);
-            $qry_prepare->bind_param("ssss", $this->post, $this->description, $this->post_shift,$this->who_can_vote);
+            $qry_prepare->bind_param("sssss", $this->post, $this->description, $this->post_shift,$this->who_can_vote,$this->post_status);
             return $qry_prepare->execute();
         } catch (Exception $e) {
             echo $e->getMessage();
@@ -142,9 +143,9 @@ class Position
                 throw new Exception('who can vote should be MF,M or F');
             }
             $this->post=trim($this->post);
-            $qry = "UPDATE {$this->table} SET `post`=?,`description`=?,`post_shift`=?,`who_can_vote`=? where post_id=?";
+            $qry = "UPDATE {$this->table} SET `post`=?,`description`=?,`post_shift`=?,`who_can_vote`=?,`post_status`=? where post_id=?";
             $qry_prepare = $this->conn->prepare($qry);
-            $qry_prepare->bind_param("ssssi", $this->post, $this->description, $this->post_shift,$this->who_can_vote ,$id);
+            $qry_prepare->bind_param("sssssi", $this->post, $this->description, $this->post_shift,$this->who_can_vote,$this->post_status ,$id);
             $qry_prepare->execute();
             if($this->conn->affected_rows> 0)
                 return $this->conn->affected_rows;

@@ -36,7 +36,7 @@
                     //console.log(data);
                     data.data.forEach(values => {
                         if (document.querySelector(`#post${values.post_id}`)) {
-                            document.querySelector(`#post${values.post_id} #total_votes`).innerHTML=values.total_votes;
+                            document.querySelector(`#post${values.post_id} #total_votes`).innerHTML=values.total_votes||0;
                         }
                         else {
                             ballot_post.innerHTML += `

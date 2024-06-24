@@ -150,7 +150,7 @@
                 $qry_prepare = $this->conn->prepare($qry);
                 $qry_prepare->bind_param("ssssss", $this->username, $this->name, $this->password,$this->email,$this->role,$username);
                 $qry_prepare->execute();
- 		if($this->conn->affected_rows> 0)
+ 		        if($this->conn->affected_rows> 0)
                 	return $this->conn->affected_rows;
             	throw new Exception('Update Error');
                 

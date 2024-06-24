@@ -1,4 +1,5 @@
 <?php
+$academic_year=date('Y').'-'.((int)date('y')+1);
 class Connection
 {
     private $db_host='localhost';

@@ -700,8 +700,24 @@ footer
 } */
 #vote_status,#vote
 {
-  font-size: 120%;
+ 
   padding:0rem 0.5rem;
+}
+.poll_form
+{
+  position: fixed;
+  bottom: 0.5rem;
+  right:0.5rem;
+  z-index: 10000;
+  opacity:25%;
+  transition: opacity 0.5s;
+  display: flex;
+  flex-wrap: wrap;
+  gap:0.2rem;
+}
+.poll_form:hover
+{
+  opacity: 100%;
 }
 @keyframes anime-up-vote 
 {
@@ -737,14 +753,14 @@ footer
 } */
 #vote_status.up_vote
 {
-  color:green;
+  /* color:green; */
   animation: anime-up-vote 1.5s linear infinite;
   
   /* animation: anime-blink 2s linear infinite; */
 }
 #vote_status.down_vote
 {
-  color:red;
+  /* color:red; */
   animation: anime-down-vote 1.5s linear infinite;
   /* animation: anime-blink 2s linear infinite; */
 }
@@ -760,11 +776,11 @@ footer
   
   font-weight:lighter;
 }
-#ballot_all tr:has(#vote_status[class='up_vote']) td:last-child::after
+/* #ballot_all tr:has(#vote_status[class='up_vote']) td:last-child::after
 {
-  /* content:'Won'; */
-  display: none;
-}
+  content:'Won'; 
+  
+} */
 .profile-card
 {
   font-weight: bold;
@@ -979,10 +995,14 @@ footer
   {
     display: flex;
   }
-  #ballot_all tr:has(#vote_status[class='up_vote']) td:last-child::after
+  /* #ballot_all tr:has(#vote_status[class='up_vote']) td:last-child::after
   {
     display: block;
-  }
+  } */
+  /* #ballot_all
+  {
+    font-size: smaller;
+  } */
   /* table br
   {
     display: none;
@@ -1019,10 +1039,10 @@ footer
   {
     margin-top: 0rem;
   }
-  #vote_status
+  /* #vote_status
   {
     display: none;
-  }
+  } */
   .pr-not
   {
     display: none!important;
