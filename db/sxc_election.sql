@@ -43,9 +43,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `username`, `name`, `email`, `password`, `role`, `created_on`, `updated_on`) VALUES
-(2, 'muthuabi', 'Muthukrishnan M', 'muthuabi292@gmail.com', 'bXV0aHUxMjM=', 'admin', '2024-06-11 19:04:31', '2024-06-16 21:34:55'),
-(3, 'leo', 'Leolin', 'leo@gmail.com', 'bGVvMTIz', 'viewer', '2024-06-11 19:21:24', '2024-06-16 21:34:55'),
-(5, 'muthu  ', 'someone', 'muthuabi027@gmail.com', 'bXV0aHUxMjM=', 'restricted', '2024-06-16 21:41:11', '2024-06-16 21:57:10');
+(1, 'muthuabi', 'Muthukrishnan M', 'muthuabi292@gmail.com', 'bXV0aHUxMjM=', 'admin', '2024-06-11 19:04:31', '2024-06-16 21:34:55');
 
 -- --------------------------------------------------------
 
@@ -231,6 +229,7 @@ ALTER TABLE `candidates`
 ALTER TABLE `votes`
   ADD CONSTRAINT `fk_candidate_votes` FOREIGN KEY (`candidate_id`) REFERENCES `candidates` (`candidate_id`) ON UPDATE CASCADE;
 COMMIT;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
