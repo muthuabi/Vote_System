@@ -20,7 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `sxc_election`
 --
-
+CREATE DATABASE `sxc_election`;
+USE `sxc_election`;
 -- --------------------------------------------------------
 
 --
@@ -32,7 +33,7 @@ CREATE TABLE `admin` (
   `username` varchar(30) NOT NULL,
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` varchar(15) NOT NULL,
+  `password` varchar(30) NOT NULL,
   `role` enum('admin','sub-admin','viewer','restricted') NOT NULL DEFAULT 'viewer',
   `created_on` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_on` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -43,7 +44,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `username`, `name`, `email`, `password`, `role`, `created_on`, `updated_on`) VALUES
-(1, 'muthuabi', 'Muthukrishnan M', 'muthuabi292@gmail.com', 'bXV0aHUxMjM=', 'admin', '2024-06-11 19:04:31', '2024-06-16 21:34:55');
+(1, 'muthuabi', 'Muthukrishnan M', 'muthuabi292@gmail.com', 'bXV0aHUxMjM=', 'admin', '2024-06-11 19:04:31', '2024-06-16 21:34:55'),
+(2, 'sxc_vote_admin', 'Master Admin', 'sxcvote@gmail.com', 'c3hjdm90ZTE5MjM=', 'admin', '2024-06-11 19:04:31', '2024-06-16 21:34:55');
 
 -- --------------------------------------------------------
 
@@ -181,37 +183,37 @@ ALTER TABLE `votes`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `candidates`
 --
 ALTER TABLE `candidates`
-  MODIFY `candidate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `candidate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `old_data_table`
 --
 ALTER TABLE `old_data_table`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=176;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `polls`
 --
 ALTER TABLE `polls`
-  MODIFY `poll_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `poll_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `position`
 --
 ALTER TABLE `position`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `votes`
 --
 ALTER TABLE `votes`
-  MODIFY `vote_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
+  MODIFY `vote_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- Constraints for dumped tables

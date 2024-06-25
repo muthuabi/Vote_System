@@ -295,10 +295,13 @@ form .form-group
 {
   position: absolute;
   top: 25%;
-  right:1.5rem;
+  right:1rem;
   transform: translateY(50%);
   opacity: 15%;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .form-group > .password-show
@@ -306,7 +309,17 @@ form .form-group
   position: absolute;
   top: 50%;
   transform: translateY(50%);
-  right: 0.5rem;
+  right: 1rem;
+}
+.password-show::after
+{
+  content: 'Show';
+  position: absolute;
+  
+}
+.password-show:checked::after
+{
+  content: 'Hide';
 }
 @keyframes small_err_message {
   from
@@ -416,7 +429,7 @@ form.login_form.criteria_form .form-control
     top:5rem;
     right:0.4rem;
     height:fit-content;
-	z-index:10000;
+	z-index:-1;
   }
   .main-card-container
   {

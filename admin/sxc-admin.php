@@ -121,7 +121,7 @@
                                 <label for="password">
                                     Password
                                 </label>
-                                <input type="password" name='password' value="<?php if (isset($value)) echo $value['password']; ?>" required id='password' class="form-control">
+                                <input type="password" name='password' maxlength="15" value="<?php if (isset($value)) echo $value['password']; ?>" required id='password' class="form-control">
                             </div>
                         
                             <div class="form-group">
