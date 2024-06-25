@@ -12,6 +12,20 @@
         {
             $this->conn=$conn;
         }
+        public function delete_poll($year)
+        {
+            try {
+                $qry = "DELETE FROM {$this->table} where poll_year=?";
+                $qry_prepare = $this->conn->prepare($qry);
+                $qry_prepare->bind_param("s", $year);
+                $qry_prepare->execute();
+                return $this->conn->affected_rows;
+            } catch (Exception $e) {
+                echo $e->getMessage();
+                $this->error=$e;
+                return 0;
+            }
+        }
         public function insert_poll($year,$status)
         {
             try{

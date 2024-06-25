@@ -21,6 +21,8 @@
    </header>
     <main class='content-wrapper'>
         <form action='' method='post' class="poll_form">
+        <b>Polling Actions</b>
+            <div>
             <?php
                 include_once("../util_classes/Polls.php");
                 try{
@@ -34,6 +36,11 @@
                     if($poll->init_status($_POST['end'],'ended'))
                         echo 'Poll Ended';
                 }
+                if(isset($_POST['delete']))
+                {
+                    if($poll->delete_poll($_POST['delete']))
+                        echo 'Poll Deleted';
+                }
                 }
                 catch(Exception $e)
                 {
@@ -41,8 +48,13 @@
                 }
               
             ?>
-                <button type='submit' name='start' value="<?php echo $academic_year; ?>" class='btn btn-success '>Start Polling</button>
-                <button type='submit' name='end' value="<?php echo $academic_year; ?>" class='btn btn-danger '>End Polling</button>
+            </div>
+            <div>
+                <button type='submit' name='start' value="<?php echo $academic_year; ?>" class='btn btn-success '>Start</button>
+                <button type='submit' name='end' value="<?php echo $academic_year; ?>" class='btn btn-warning '>End</button>
+                <button type='submit' name='delete' value="<?php echo $academic_year; ?>" class='btn btn-danger '>Delete</button>
+            </div>
+            
         </form>
         <div class='dashboard-post-cards' id="dashboard_post_cards">
            

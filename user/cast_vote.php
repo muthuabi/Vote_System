@@ -67,6 +67,8 @@
             include_once("../util_classes/Polls.php");
           
             try {
+				echo "<form method='post' style='width:fit-content;position:fixed;top:0;'><button type='submit' class='btn btn-secondary opacity-hover'  name='rechoose'>rechoose</button></form>";
+
                 if($data=$poll->get_status($academic_year))
                 {
                     if($data['poll_status']=='ended')
@@ -79,13 +81,14 @@
 
                 if ($data = $pos->readShiftGenderAll($shift, $vote_gender)) {
                     $post_array = $data['data'];
+					if(count($post_array)<=0)
+						die("<center><b>No Contestants Found</b><br><b>Rechoose After Announcement from Admin Don't Refresh</b></center>");
                 } else
                     throw new Exception('No Positions Found');
             } catch (Exception $e) {
                 die($e->getMessage());
             }
-            echo "<form method='post' style='width:fit-content;position:fixed;top:0;'><button type='submit' class='btn btn-secondary opacity-hover'  name='rechoose'>rechoose</button></form>";
-
+            
         ?>
     </header>
 
@@ -131,6 +134,8 @@
 
                         $candidates = $res['data'];
                         $count = count($candidates);
+                        if($count<=0)
+                            echo "<center><b>Contact Admin!</b><br><b>This Post should be nocontest if no candidates.</b></center>";
                         echo "<div class='candidates-container' style='grid-template-columns:repeat({$count},1fr);' >";
                         for ($j = 0; $j < count($candidates); $j++) {
                             echo "<form class='card candidate-card' action='' method='post' id='can{$candidates[$j]['candidate_id']}' >

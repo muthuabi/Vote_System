@@ -90,7 +90,7 @@ if(isset($_POST['change_pass']))
       <div class="toast-body">
         <b style="color:rgb(99, 96, 96)" id="message"></b>
       </div>
-    </div>
+</div>
 <nav class="navbar navbar-expand">
 
     <div class="container-fluid">

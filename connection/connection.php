@@ -3,8 +3,8 @@ $academic_year=date('Y').'-'.((int)date('y')+1);
 class Connection
 {
     private $db_host='localhost';
-    private $db_user='root';
-    private $db_password='';
+    private $db_user='muthuabi';
+    private $db_password='Muthu*123';
     private $db_dbase='sxc_election';
     protected $conn;
     public function __construct()

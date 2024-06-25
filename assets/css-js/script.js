@@ -37,8 +37,22 @@ window.addEventListener("resize",(e)=>{
 //     location.reload();
 // }
 document.addEventListener("DOMContentLoaded",(event)=>{
-    const date=new Date();
     
+    const password_types=document.querySelectorAll("input[type='password']");
+    password_types.forEach(element=>{
+        const password_show=document.createElement("input");
+        password_show.type='checkbox';
+        password_show.className='password-show';
+        element.insertAdjacentElement('afterend',password_show);
+        password_show.addEventListener("change",(e)=>{
+            if(e.target.checked)
+                e.target.previousElementSibling.type='text';
+            else
+                e.target.previousElementSibling.type='password';
+                
+        })
+    })
+    const date=new Date();
     maincanvas=document.querySelector("#maincanvas");
     const academic_year=date.getFullYear()+'-'+((date.getFullYear()+1)%100);
     const sxc_footer_head=`Designed & Maintained by SXC ERP and Web Team | © 2024 St. Xavier's College. All rights reserved`;
@@ -76,7 +90,7 @@ document.addEventListener("DOMContentLoaded",(event)=>{
   }
     window.addEventListener("online",(e)=>{
         if(on_off)
-        on_off.innerHTML=`<small style='background-color:green;border-radius:50%;width:15px;height:15px;'></small><small>Online</small>`;
+        on_off.innerHTML=`<small style='background-color:green;border-radius:50%;width:10px;height:10px;'></small><small>Online</small>`;
         if(liveblink)
         liveblink.getAnimations()[0].play();
         // votestatus.getAnimations()[0].play();
@@ -84,7 +98,7 @@ document.addEventListener("DOMContentLoaded",(event)=>{
 	})
     window.addEventListener("offline",(e)=>{
         if(on_off)
-        on_off.innerHTML=`<small style='background-color:red;border-radius:50%;width:15px;height:15px;'></small><small>Offline</small>`;
+        on_off.innerHTML=`<small style='background-color:red;border-radius:50%;width:10px;height:10px;'></small><small>Offline</small>`;
 		if(liveblink)
         liveblink.getAnimations()[0].pause();
 		// votestatus.getAnimations()[0].pause();

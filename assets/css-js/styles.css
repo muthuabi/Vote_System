@@ -146,7 +146,9 @@ nav .navbar-brand {
 #change_pass_container
 {
   background-color: rgba(0, 0, 0, 0.747);
+  top:0;
   height:100vh!important;
+  padding-top: 5rem;
  
 }
 #change_pass_container form
@@ -285,6 +287,26 @@ form .form-group
     display: flex;
     flex-direction: column;
     gap:0.3rem;
+    position: relative;
+   justify-content: center;
+
+}
+.password-show
+{
+  position: absolute;
+  top: 25%;
+  right:1.5rem;
+  transform: translateY(50%);
+  opacity: 15%;
+  cursor: pointer;
+}
+
+.form-group > .password-show
+{
+  position: absolute;
+  top: 50%;
+  transform: translateY(50%);
+  right: 0.5rem;
 }
 @keyframes small_err_message {
   from
@@ -391,7 +413,7 @@ form.login_form.criteria_form .form-control
   #my_toast_offline
   {
 	position: fixed;
-    top:4.5rem;
+    top:5rem;
     right:0.4rem;
     height:fit-content;
 	z-index:10000;
@@ -705,19 +727,22 @@ footer
 }
 .poll_form
 {
+  cursor:default;
   position: fixed;
-  bottom: 0.5rem;
+  bottom: -2.5rem;
   right:0.5rem;
   z-index: 10000;
   opacity:25%;
-  transition: opacity 0.5s;
+  transition: opacity 0.5s, bottom 0.5s;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   gap:0.2rem;
 }
 .poll_form:hover
 {
   opacity: 100%;
+  bottom:0.5rem;
 }
 @keyframes anime-up-vote 
 {

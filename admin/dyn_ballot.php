@@ -42,7 +42,8 @@
 
             <b>Student Council Election (2024-25)</b>
             <div class="pr-not">
-                <strong id="live-blink"></strong><strong id="live"><img src="../assets/icons/live-icon.svg" width="20px" height="20px" />LIVE</strong>
+                <strong id="live-blink"></strong><img src="../assets/icons/live-icon.svg" width="20px" height="20px" /><strong id="live">LIVE</strong>
+
             </div>
         </div>
 
@@ -82,7 +83,8 @@
                     document.querySelectorAll('.unopposed').forEach(element => {
                         element.style.display = 'none';
                     })
-                    if (poll_status == "ended") {
+                    if (poll_status == "ended" || poll_status=="not_started") {
+                        document.querySelector("#live").innerHTML=("Polling "+poll_status).toUpperCase();
                         document.querySelectorAll('.unopposed').forEach(element => {
                             element.style.display = 'table-row';
                         })
@@ -95,6 +97,7 @@
                        
 
                     } else {
+                        document.querySelector("#live").innerHTML="LIVE";
                         document.querySelectorAll("#vote_status").forEach(element => {
                             if (element.getAnimations()[0])
                                 element.getAnimations()[0].play();
