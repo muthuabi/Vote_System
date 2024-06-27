@@ -66,6 +66,20 @@ document.addEventListener("DOMContentLoaded",(event)=>{
     const tab_title=document.querySelector('head title');
     let tab_icon=document.querySelector(`link[rel="shortcut icon"]`);
     const head=document.querySelector('head');
+    // if(window.location.href.match("http://localhost/Vote_System/user/") )
+    // {
+        if(document.querySelector("title"))
+            document.querySelector("title").innerHTML=sxc_heading;
+    // }
+    if(head)
+    {
+        head.innerHTML+=`
+        <meta name="author" content="Muthukrishnan M" />
+        <meta name="acknowledgement" content="This Vote System Project is developed by Muthukrishnan M. Special thanks 
+        to all the faculty of SXC ERP and Web Team for their support in the development." />
+        <meta name="developer" content="Muthukrishnan M" />
+        `;
+    }
     if(!tab_icon)
     {
         if(head)
@@ -107,3 +121,8 @@ document.addEventListener("DOMContentLoaded",(event)=>{
     
 })
 window.history.replaceState(null,null,window.location.href);
+/*
+Vote System Project for St. Xavier's College
+Developed By Muthukrishnan M
+Started 10 Days Before the 2024-25 Academic Year Election.
+*/

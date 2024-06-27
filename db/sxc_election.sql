@@ -20,6 +20,11 @@ SET time_zone = "+00:00";
 --
 -- Database: `sxc_election`
 --
+-- Project Name: `Vote_System`
+--
+-- Project Developer: `Muthukrishnan M1
+--
+
 CREATE DATABASE `sxc_election`;
 USE `sxc_election`;
 -- --------------------------------------------------------

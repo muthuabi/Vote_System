@@ -1,3 +1,8 @@
+/*
+Vote System Project for St. Xavier's College
+Developed By Muthukrishnan M
+Started 10 Days Before the 2024-25 Academic Year Election.
+*/
 function init_toast_head(message = "", id = "my_toast_offline") {
     document.addEventListener('DOMContentLoaded',(e)=>{
         const toast = document.querySelector(`.toast#${id}`);

@@ -1,3 +1,8 @@
+/*
+Vote System Project for St. Xavier's College
+Developed By Muthukrishnan M
+Started 10 Days Before the 2024-25 Academic Year Election.
+*/
 /* @font-face {
     font-family: 'Montserrat';
     src: url('../fonts/Montserrat/Montserrat-Black.ttf')
@@ -427,14 +432,14 @@ form.login_form.criteria_form .form-control
     opacity: 25%;
 }
 
-  #my_toast_offline
-  {
+#my_toast_offline
+{
 	position: fixed;
     top:5rem;
     right:0.4rem;
     height:fit-content;
     z-index: 5;
-  }
+}
   .main-card-container
   {
     display: flex;
@@ -658,8 +663,6 @@ footer
     padding:3rem 1rem;
     border-top: 5px solid #daa106  ;
     border-bottom: 5px solid #daa106 ;
-    
-
 }
 .footer-head
 {
@@ -877,7 +880,7 @@ footer
 
 #dyn_ballot tbody tr
 {
-    border-bottom: 0.5px solid rgb(207, 205, 205);
+    border-bottom: 0.5px solid rgb(219, 217, 217);
  
 }
 

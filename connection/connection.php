@@ -1,4 +1,9 @@
 <?php
+/*
+Vote System Project for St. Xavier's College
+Developed By Muthukrishnan M
+Started 10 Days Before the 2024-25 Academic Year Election.
+*/
 $academic_year=date('Y').'-'.((int)date('y')+1);
 class Connection
 {
