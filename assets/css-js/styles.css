@@ -340,12 +340,16 @@ form .form-group small
   color:orange;
   animation: small_err_message 0.5s ease-in-out;
 }
-form .form-group .form-control:hover ~ small
+/* form .form-group .form-control:hover ~ small
 {
   display: block;
 }
 form .form-group .form-control:focus ~ small
 {
+  display: block;
+} */
+input:required:focus:invalid + small,  textarea:required:focus:invalid + small,.form-control:invalid + small
+{ 
   display: block;
 }
 .modal
@@ -429,7 +433,7 @@ form.login_form.criteria_form .form-control
     top:5rem;
     right:0.4rem;
     height:fit-content;
-	z-index:-1;
+    z-index: 5;
   }
   .main-card-container
   {
@@ -745,7 +749,7 @@ footer
   bottom: -2.5rem;
   right:0.5rem;
   z-index: 10000;
-  opacity:25%;
+  opacity:75%;
   transition: opacity 0.5s, bottom 0.5s;
   display: flex;
   flex-direction: column;

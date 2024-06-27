@@ -1,7 +1,7 @@
 function init_toast_head(message = "", id = "my_toast_offline") {
     document.addEventListener('DOMContentLoaded',(e)=>{
         const toast = document.querySelector(`.toast#${id}`);
-        toast.style.zIndex='100000';
+        
         if (message)
             document.querySelector(`#${id} #message`).innerText = message;
         toaster = new bootstrap.Toast(toast);
